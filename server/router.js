@@ -14,6 +14,8 @@ router.delete('/delete-user', authController.deleteUser);
 
 //User routes
 router.post('/create-collection', collectionsController.create)
+router.get('/get-collection/:id', collectionsController.getCollection)
+router.get('/get-all-collections', collectionsController.getAllCollections)
 
 
 module.exports = router;
