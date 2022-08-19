@@ -30,16 +30,46 @@ class collectionRouter {
 
   async getAllCollections(req, res) {
     try {
-        const result = await Collection.find({});
-        res.status(202).json(result);
-      } catch (err) {
-        console.log(err);
-      }
+      const result = await Collection.find({});
+      res.status(202).json(result);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  async getUsersCollection() {}
-  async updateCollection() {}
-  async deleteCollection() {}
+  async getUsersCollections(req, res) {
+    try{
+      const result = await Collection.find({ owner: req.params.owner });
+      res.status(202).json(result);
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
+  async updateCollection(req, res) {
+    try{
+      const { title, description } = req.body;
+      await Collection.findOneAndUpdate(
+        { _id: req.params.id },
+        { title: title, description: description }
+      );
+      res.status(202).json({message: `Collection ${title} updated`});
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
+  async deleteCollection(req, res) {
+    try{
+      await Collection.findOneAndDelete({ _id: req.params.id });
+      res.status(204).json({message: `Collection deleted`});
+    }
+    catch(err) {
+      console.log(err);
+    } 
+  }
 }
 
 module.exports = new collectionRouter();
