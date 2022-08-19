@@ -19,7 +19,7 @@ class authRouter {
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      const { username, password, role } = req.body;
+      const { username, name, lastName, password, role } = req.body;
       const candidate = await User.findOne({ username });
       if (candidate) {
         return res.status(400).json({ message: "User already exists" });
@@ -28,6 +28,8 @@ class authRouter {
       const hashPassword = bcrypt.hashSync(password, salt);
       const user = new User({
         username: username,
+        name: name,
+        lastName: lastName,
         password: hashPassword,
         role: role,
       });
@@ -42,13 +44,7 @@ class authRouter {
   async login(req, res) {
     try {
       const { username, password } = req.body;
-      console.log("======================");
-      console.log(req.body);
-      console.log("======================");
-
-      const user = await User.findOne({ username: username });
-      console.log(user);
-      
+      const user = await User.findOne({ username: username });    
       if (!user) {
         return res.status(400).json({ message: "User not found" });
       }
@@ -71,6 +67,19 @@ class authRouter {
     try {
       const users = await User.find({});
       res.json(users);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async getUser(req,res){
+    try {
+      const username = req.body;
+      const user = await User.findOne({ username: username });
+      console.log(user);
+      if (!user) {
+        return res.status(400).json({ message: "User not found" });
+      }
+      res.status(200).json(user);
     } catch (err) {
       console.log(err);
     }

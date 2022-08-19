@@ -23,7 +23,7 @@ export default function LoginPage() {
       password: enteredPassword,
     };
     try {
-      const res = await axios.post("/auth/login", loginData);
+      const res = await axios.post("/api/login", loginData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("currentUser", JSON.stringify(res.data.user));
       window.location.href = "/";
@@ -53,7 +53,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div class="mb-3">
+        <div className="mb-3">
           <label htmlFor="password">Password</label>
           <input
             className="form-control"

@@ -11,6 +11,8 @@ router.post('/registration', authController.registration);
 router.post('/login', authController.login);
 router.put('/change-status', authController.changeStatus);
 router.delete('/delete-user', authController.deleteUser);
+router.get('/get-users', authController.getUsers);
+router.get('/get-user', authController.getUser);
 
 //User routes
 router.post('/create-collection', collectionsController.create)

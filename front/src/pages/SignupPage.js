@@ -7,13 +7,16 @@ let userExists = false;
 export default function SignupPage() {
   const inputUsername = useRef();
   const inputPassword = useRef();
+  const inputName = useRef();
+  const inputLastName = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("press submit");
 
     const enteredUsername = inputUsername.current.value;
     const enteredPassword = inputPassword.current.value;
+    const enteredName = inputName.current.value;
+    const enteredLastName = inputLastName.current.value;
     if (enteredUsername.trim().length === 0) {
       alert("Please enter username.");
       return false;
@@ -22,38 +25,41 @@ export default function SignupPage() {
       alert("Password should not be empty or less than 4 characters.");
       return false;
     }
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get("/auth/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const candidate = res.data.find(
-        (username) => username.username === enteredUsername
-      );
-      console.log(candidate);
+    console.log(enteredUsername, enteredPassword, enteredName, enteredLastName);
 
-      if (candidate) {
-        userExists = true;
-        alert("User already exists. You will be redirected to login page.");
-        window.location.href = "/log-in";
-        return false;
-      }
-      await axios.post("/auth/registration", {
-        username: enteredUsername,
-        password: enteredPassword,
-      });
+    // check if user exists
+    const res = await axios.get("/api/get-users");
+    const candidate = res.data.find(
+      (name) => name.username === enteredUsername
+    );
+    console.log(candidate);
+    if (candidate) {
+      userExists = true;
+      alert("User already exists");
+      return false;
+    }
+    const userData = {
+      username: enteredUsername,
+      name: enteredName,
+      lastName: enteredLastName,
+      password: enteredPassword,
+    };
+    try {
+      await axios.post("/api/registration", userData);
+      alert("User created successfully");
+
       const loginData = {
         username: enteredUsername,
         password: enteredPassword,
       };
-      const loginRes = await axios.post("/auth/login", loginData);
+      const loginRes = await axios.post("/api/login", loginData);
       localStorage.setItem("token", loginRes.data.token);
       localStorage.setItem("currentUser", JSON.stringify(loginRes.data.user));
       window.location.href = "/";
     } catch (err) {
-      console.error(err);
+      console.log(err);
+      alert("Please check your username and password");
+      return false;
     }
   }
 
@@ -65,12 +71,33 @@ export default function SignupPage() {
           Already have an account? <Link to="/login">Log In</Link>
         </p>
         <div className="formItem">
+          <label htmlFor="name">Name</label>
+          <input
+            type="test"
+            className="form-control"
+            placeholder="John"
+            ref={inputName}
+            required
+          />
+        </div>
+        <div className="formItem">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="test"
+            className="form-control"
+            placeholder="Jefferson"
+            ref={inputLastName}
+            required
+          />
+        </div>
+        <div className="formItem">
           <label htmlFor="email">E-mail</label>
           <input
             type="email"
             className="form-control"
             placeholder="your-email@gmail.com"
             ref={inputUsername}
+            required
           />
         </div>
         <div className="formItem">
@@ -80,6 +107,7 @@ export default function SignupPage() {
             type="password"
             placeholder="password123"
             ref={inputPassword}
+            required
           />
         </div>
         <div>
