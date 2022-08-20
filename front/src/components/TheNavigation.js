@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-
 export default function TheNavigation() {
   function logOut() {
     localStorage.removeItem("token");
@@ -17,22 +16,22 @@ export default function TheNavigation() {
   const list = (
     <ul className="list">
       <li>
-        <Link className="link" onClick="toggleMenu" to="/">
+        <Link className="link" onClick={toggleMenu} to="/">
           Home
         </Link>
       </li>
       <li>
-        <Link className="link" onClick="toggleMenu" to="/login">
+        <Link className="link" onClick={toggleMenu} to="/login">
           Login
         </Link>
       </li>
       <li>
-        <Link className="link" onClick="toggleMenu" to="/signup">
+        <Link className="link" onClick={toggleMenu} to="/signup">
           Sign up
         </Link>
       </li>
       <li>
-        <Link className="link" onClick="toggleMenu" to="/profile">
+        <Link className="link" onClick={toggleMenu} to="/profile">
           Profile
         </Link>
       </li>
@@ -57,7 +56,11 @@ export default function TheNavigation() {
         </div>
         <div>
           {navIsOpen ? (
-            <FontAwesomeIcon icon={faEyeSlash} onClick={toggleMenu} className="menu"/>
+            <FontAwesomeIcon
+              icon={faEyeSlash}
+              onClick={toggleMenu}
+              className="menu"
+            />
           ) : (
             <FontAwesomeIcon
               icon={faBars}
