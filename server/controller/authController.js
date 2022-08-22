@@ -19,7 +19,7 @@ class authRouter {
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      const { username, name, lastName, password, role } = req.body;
+      const { username, name, lastName, password, role, email } = req.body;
       const candidate = await User.findOne({ username });
       if (candidate) {
         return res.status(400).json({ message: "User already exists" });
@@ -32,6 +32,7 @@ class authRouter {
         lastName: lastName,
         password: hashPassword,
         role: role,
+        email: email,
       });
       await user.save();
       return res.json({ message: "User created" });
@@ -44,7 +45,7 @@ class authRouter {
   async login(req, res) {
     try {
       const { username, password } = req.body;
-      const user = await User.findOne({ username: username });    
+      const user = await User.findOne({ username: username });
       if (!user) {
         return res.status(400).json({ message: "User not found" });
       }
@@ -63,7 +64,7 @@ class authRouter {
     }
   }
 
-  async getUsers(req, res) {
+  async getAllUsers(req, res) {
     try {
       const users = await User.find({});
       res.json(users);
@@ -71,11 +72,10 @@ class authRouter {
       console.log(err);
     }
   }
-  async getUser(req,res){
+  async getUser(req, res) {
     try {
-      const username = req.body;
-      const user = await User.findOne({ username: username });
-      console.log(user);
+      const id = req.params.id;
+      const user = await User.findOne({ _id: id });
       if (!user) {
         return res.status(400).json({ message: "User not found" });
       }
@@ -86,8 +86,9 @@ class authRouter {
   }
   async changeStatus(req, res) {
     try {
-      const { username, role } = req.body;
-      const user = await User.findOne({ username });
+      const id = req.params.id;
+      const { role } = req.body;
+      const user = await User.findOne({ _id: id });
       if (!user) {
         return res.status(400).json({ message: "User not found" });
       }
@@ -100,13 +101,13 @@ class authRouter {
   }
   async deleteUser(req, res) {
     try {
-      const { username } = req.body;
-      const user = await User.findOne({ username: username });
+      const id = req.params.id;
+      const user = await User.findOne({ _id: id });
       if (!user) {
         return res.status(400).json({ message: "User not found" });
       }
-      await user.remove();
       res.status(204).json({ message: "User deleted" });
+      await user.remove();
     } catch (err) {
       console.log(err);
     }

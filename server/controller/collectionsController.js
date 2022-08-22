@@ -1,19 +1,25 @@
-const User = require("../models/User");
 const Collection = require("../models/Collection");
+const User = require("../models/User");
 
 class collectionRouter {
   async create(req, res) {
     try {
-      const { title, owner, description } = req.body;
+      const username = req.params.username;
+      const { title, description } = req.body;
+      const user = await User.findOne({ username: username });
+      console.log(user);
       const collection = new Collection({
+        userID: user._id,
         title: title,
-        owner: owner,
+        username: username,
         description: description,
       });
+      console.log(collection);
+
       await collection.save();
       res
         .status(200)
-        .json({ message: `Collection ${title} created by ${owner}` });
+        .json({ message: `Collection ${title} created by ${username}` });
     } catch (err) {
       console.log(err);
     }
@@ -38,37 +44,34 @@ class collectionRouter {
   }
 
   async getUsersCollections(req, res) {
-    try{
-      const result = await Collection.find({ owner: req.params.owner });
+    try {
+      const result = await Collection.find({ username: req.params.username });
       res.status(202).json(result);
-    }
-    catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
 
   async updateCollection(req, res) {
-    try{
+    try {
       const { title, description } = req.body;
       await Collection.findOneAndUpdate(
         { _id: req.params.id },
         { title: title, description: description }
       );
-      res.status(202).json({message: `Collection ${title} updated`});
-    }
-    catch(err){
+      res.status(202).json({ message: `Collection ${title} updated` });
+    } catch (err) {
       console.log(err);
     }
   }
 
   async deleteCollection(req, res) {
-    try{
+    try {
       await Collection.findOneAndDelete({ _id: req.params.id });
-      res.status(204).json({message: `Collection deleted`});
-    }
-    catch(err) {
+      res.status(204).json({ message: `Collection deleted` });
+    } catch (err) {
       console.log(err);
-    } 
+    }
   }
 }
 

@@ -5,43 +5,28 @@ const authController = require("./controller/authController");
 const collectionsController = require("./controller/collectionsController");
 const imageController = require("./controller/imageController");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
 // const { check } = require("express-validator");
 // const authMiddleware = require("./middleware/authMiddleware");
 
 //Auth routes
-router.post("/registration", authController.registration);
-router.post("/login", authController.login);
-router.put("/change-status", authController.changeStatus);
-router.delete("/delete-user", authController.deleteUser);
-router.get("/get-users", authController.getUsers);
-router.get("/get-user", authController.getUser);
+router.post("/user/registration", authController.registration);
+router.post("/user/login", authController.login);
+router.get("/user", authController.getAllUsers);
+router.get("/user/:id", authController.getUser);
+router.put("/user/:id/change-status", authController.changeStatus);
+router.delete("/user/:id/delete", authController.deleteUser);
 
 //User routes
-router.post("/create-collection", collectionsController.create);
-router.get("/get-collection/:id", collectionsController.getCollection);
-router.get("/get-all-collections", collectionsController.getAllCollections);
-router.get(
-  "/get-users-collections/:owner",
-  collectionsController.getUsersCollections
-);
-router.put("/update-collection/:id", collectionsController.updateCollection);
-router.delete("/delete-collection/:id", collectionsController.deleteCollection);
+router.post("/collection/:username/create", collectionsController.create);
+router.get("/collection/:id", collectionsController.getCollection);
+router.get("/collection", collectionsController.getAllCollections);
+router.get("/collection/:user", collectionsController.getUsersCollections);
+router.put("/collection/:id/update", collectionsController.updateCollection);
+router.delete("/collection/:id/delete", collectionsController.deleteCollection);
 
-//Item routes
-router.post(
-  "/upload-photo", imageController.uploadImage
-);
+//Image routes
+router.post("/upload-photo", imageController.uploadImage);
 router.get("/get-images", imageController.getAllImages);
 
+//Item router
 module.exports = router;

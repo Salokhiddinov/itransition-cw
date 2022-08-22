@@ -7,6 +7,7 @@ import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import TheNavigation from "./components/TheNavigation";
+import CreateItemPage from "./pages/CreateItemPage";
 
 function App() {
   return (
@@ -23,6 +24,16 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/user">
+            <Route path="/collection">
+              <Route path="/:id" />
+              <Route path="/create"/>
+              <Route path="/item">
+                <Route path="/:id" element={<CreateItemPage />} />
+                <Route path="/create" element={<CreateItemPage />} />
+              </Route>
+            </Route>
+          </Route>
         </Routes>
       </section>
     </div>
