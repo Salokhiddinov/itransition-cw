@@ -20,7 +20,7 @@ router.delete("/user/:id/delete", authController.deleteUser);
 router.post("/collection/:username/create", collectionsController.create);
 router.get("/collection/:id", collectionsController.getCollection);
 router.get("/collection", collectionsController.getAllCollections);
-router.get("/collection/:user", collectionsController.getUsersCollections);
+router.get("/collection/:username", collectionsController.getUsersCollections);
 router.put("/collection/:id/update", collectionsController.updateCollection);
 router.delete("/collection/:id/delete", collectionsController.deleteCollection);
 

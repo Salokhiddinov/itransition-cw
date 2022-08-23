@@ -12,27 +12,44 @@ code {
     monospace;
 }
 .card {
+  margin: 1.5rem 0;
   border-style: solid;
-  border-width: 3px;
+  border-width: 1px;
   border-radius: 20px;
-  border-color: rgb(0, 0, 0);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.718), 0 6px 20px 0 rgba(57, 57, 57, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.718),
+    0 6px 20px 0 rgba(57, 57, 57, 0.19);
 }
-section{
+.container {
   margin: auto;
 }
+.form-button{
+    margin: 1rem 0;
+}
+h2{
+    font-size: 2rem;
+    font-weight: 700;
+}
 @media screen and (max-width: 600px) {
-  section{
+  .container {
     width: 95%;
   }
+  .card {
+    padding: 1rem;
+  }
 }
-@media (min-width:601px) and (max-width: 900px) {
-  section{
+@media (min-width: 601px) and (max-width: 900px) {
+  .container {
     width: 70%;
+  }
+  .card {
+    padding: 1.5em;
   }
 }
 @media (min-width: 901px) {
-  section{
+  .container {
     width: 50%;
+  }
+  .card {
+    padding: 2rem;
   }
 }

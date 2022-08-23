@@ -24,7 +24,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/user">
+          <Route path="/create" element={<CreateItemPage />} />
+
+          {/* <Route path="/user">
             <Route path="/collection">
               <Route path="/:id" />
               <Route path="/create"/>
@@ -33,7 +35,7 @@ function App() {
                 <Route path="/create" element={<CreateItemPage />} />
               </Route>
             </Route>
-          </Route>
+          </Route> */}
         </Routes>
       </section>
     </div>
