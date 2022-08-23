@@ -3,7 +3,7 @@ const router = new Router();
 const multer = require("multer");
 const authController = require("./controller/authController");
 const collectionsController = require("./controller/collectionsController");
-const imageController = require("./controller/imageController");
+const itemController = require("./controller/itemController");
 
 // const { check } = require("express-validator");
 // const authMiddleware = require("./middleware/authMiddleware");
@@ -17,16 +17,14 @@ router.put("/user/:id/change-status", authController.changeStatus);
 router.delete("/user/:id/delete", authController.deleteUser);
 
 //User routes
-router.post("/collection/:username/create", collectionsController.create);
+router.post("/collection/create/:username", collectionsController.create);
 router.get("/collection/:id", collectionsController.getCollection);
 router.get("/collection", collectionsController.getAllCollections);
 router.get("/collection/:username", collectionsController.getUsersCollections);
 router.put("/collection/:id/update", collectionsController.updateCollection);
 router.delete("/collection/:id/delete", collectionsController.deleteCollection);
 
-//Image routes
-router.post("/upload-photo", imageController.uploadImage);
-router.get("/get-images", imageController.getAllImages);
-
 //Item router
+router.post("/item/create/:username/:collectionID", itemController.createItem);
+
 module.exports = router;
