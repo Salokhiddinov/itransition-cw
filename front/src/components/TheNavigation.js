@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 // eslint-disable-next-line
-import modules from "./Navigation.modules.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import "./Navigation.modules.css";
+import Hamburger from "hamburger-react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBars } from "@fortawesome/free-solid-svg-icons";
+// import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function TheNavigation() {
   function logOut() {
@@ -50,24 +51,12 @@ export default function TheNavigation() {
 
   return (
     <div className="navigation">
-      <div className="d-flex justify-content-between logo">
+      <div className="d-flex justify-content-between logo nav-action">
         <div className="logo-text">
           the<strong>COLLECTOR</strong>
         </div>
         <div>
-          {navIsOpen ? (
-            <FontAwesomeIcon
-              icon={faEyeSlash}
-              onClick={toggleMenu}
-              className="menu"
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faBars}
-              className="menu"
-              onClick={toggleMenu}
-            />
-          )}
+          <Hamburger toggled={navIsOpen} toggle={setNavIsOpen} color="#ffffff"/>
         </div>
       </div>
       <nav>{navIsOpen ? list : null}</nav>

@@ -1,36 +1,44 @@
-import BaseCard from "../components/UI/BaseCard";
-import { Link } from "react-router-dom";
-// import { useRef } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../plugins/axios";
+import User from "../components/User";
+import Collection from "../components/Collection";
+
 export default function ProfilePage() {
+  const [collections, setCollections] = useState([]);
+  //   let refreshRate = 0;
+  const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log(currentUser._id);
+
+  //   useEffect(() => {
+
+  //   }, [0]);
+
+  //   setInterval(function () {
+  //     refreshRate++;
+  //     console.log(refreshRate);
+  //   }, 2000);
+  async function fetchCollections() {
+    const res = await axios.get(`collection/${currentUser.username}`);
+    console.log(res);
+
+    setCollections(res);
+  }
+  fetchCollections();
   return (
-    <div>
-      <Link to="/">Back to Home</Link>
-      <h2>Profile</h2>
-      <BaseCard>
-        <table className="table table-striped">
-          <tbody>
-            <tr>
-              <td>Name: </td>
-              <td>{currentUser.name}</td>
-            </tr>
-            <tr>
-              <td>Last name: </td>
-              <td>{currentUser.lastName}</td>
-            </tr>
-            <tr>
-              <td>Last name: </td>
-              <td>{currentUser.lastName}</td>
-            </tr>
-            <tr>
-              <td>Email: </td>
-              <td>{currentUser.username}</td>
-            </tr>
-          </tbody>
-        </table>
-        <Link to="/edit-profile">Edit Profile</Link>
-        <button>Delete Account</button>
-      </BaseCard>
-    </div>
+    <>
+      <div>
+        <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+          👈 Go Back
+        </button>
+        <h2 className="page-title">Profile</h2>
+        <User user={currentUser} />
+      </div>
+      <h2 className="page-title">Collections</h2>
+      {/* {collections.map((col) => (
+        <Collection collection={col} key={col._id} />
+      ))} */}
+    </>
   );
 }

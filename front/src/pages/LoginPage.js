@@ -4,11 +4,11 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
-  const inputUsername = useRef();
+  const inputEmail = useRef();
   const inputPassword = useRef();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const email = inputUsername.current.value.toLowerCase();
+    const email = inputEmail.current.value.toLowerCase();
     const enteredPassword = inputPassword.current.value;
     if (email.trim().length === 0) {
       alert("Please enter username.");
@@ -49,7 +49,7 @@ export default function LoginPage() {
             className="form-control"
             type="text"
             placeholder="your-email@gmail.com"
-            ref={inputUsername}
+            ref={inputEmail}
             required
           />
         </div>

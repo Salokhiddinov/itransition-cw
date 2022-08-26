@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: antiquewhite;
 }
 
 code {
@@ -20,25 +21,47 @@ code {
     0 6px 20px 0 rgba(57, 57, 57, 0.19);
 }
 .container {
-  margin: auto;
+  margin: 5vh auto;
 }
-.form-button{
-    margin: 1rem 0;
+.form-button {
+  margin: 1rem 0;
 }
-h2{
-    font-size: 2rem;
-    font-weight: 700;
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
 }
-h3{
-    font-weight: 600 ;
+h3 {
+  font-weight: 600;
 }
-button{
-    margin: 0.5rem 0;
+button {
+  margin: 0.5rem 0;
 }
-.the-navigation{
-    position: fixed;
+.the-navigation {
+  position: fixed;
+  animation: dropDown 0.3s ease-out;
+  transition: 0.5s ease-out;
+}
+table {
+  border-radius: 10px;
+}
+.page-title {
+  margin: 1rem 0 0 0;
+  text-align: center;
+  text-decoration: underline;
 }
 
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.action .btn {
+  width: 49%;
+}
+.nav-action{
+    align-items: center;
+}
 
 @media screen and (max-width: 600px) {
   .container {
@@ -65,3 +88,11 @@ button{
   }
 }
 
+@keyframes dropDown {
+  from {
+    transform: translateY(-300px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

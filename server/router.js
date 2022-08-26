@@ -15,7 +15,7 @@ router.get("/user/:id", authController.getUser);
 router.put("/user/:id/change-status", authController.changeStatus);
 router.delete("/user/:id/delete", authController.deleteUser);
 
-//User routes
+//Colleciton routes
 router.post("/collection/create/:username", collectionsController.create);
 router.get("/collection/:id", collectionsController.getCollection);
 router.get("/collection", collectionsController.getAllCollections);

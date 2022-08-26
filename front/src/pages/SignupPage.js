@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import Card from "../components/UI/BaseCard";
+import BaseCard from "../components/UI/BaseCard";
 import axios from "../plugins/axios";
 let userExists = false;
 
@@ -67,7 +67,7 @@ export default function SignupPage() {
   }
 
   return (
-    <Card>
+    <BaseCard>
       <form onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <p>
@@ -94,21 +94,21 @@ export default function SignupPage() {
           />
         </div>
         <div className="formItem">
-          <label htmlFor="email">E-mail</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="your-email@gmail.com"
-            ref={inputUsername}
-            required
-          />
-        </div>
-        <div className="formItem">
           <label htmlFor="username">Username</label>
           <input
             type="text"
             className="form-control"
             placeholder="@username"
+            ref={inputUsername}
+            required
+          />
+        </div>
+        <div className="formItem">
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="your-email@gmail.com"
             ref={inputEmail}
             required
           />
@@ -132,6 +132,6 @@ export default function SignupPage() {
           <p>User Exists! You will be redirected to login page.</p>
         </div>
       ) : null}
-    </Card>
+    </BaseCard>
   );
 }

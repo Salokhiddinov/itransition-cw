@@ -34,7 +34,6 @@
 }
 .link:hover {
   color: black;
-  font-size: 120%;
   font-weight: 600;
 }
 .list-item {
@@ -45,7 +44,6 @@
 .list-item:hover {
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  padding: 0.5rem 1rem;
 }
 .logout{
     display: flex;
@@ -55,11 +53,4 @@
   width: 150px;
 }
 
-@keyframes dropDown{
-    from{
-        transform: translateY(-300px);
-    }
-    to{
-        transform: translateY(0);
-    }
-}
+

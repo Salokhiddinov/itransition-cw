@@ -4,17 +4,15 @@ const User = require("../models/User").default;
 class collectionRouter {
   async create(req, res) {
     try {
+      //   const id = req.params.userID;
+      const { userID, title, description } = req.body;
       const username = req.params.username;
-      const { title, description } = req.body;
-      const user = await User.findOne({ username: username });
-      console.log(user);
       const collection = new Collection({
-        userID: user._id,
+        userID: userID,
         title: title,
         username: username,
         description: description,
       });
-      console.log(collection);
 
       await collection.save();
       res
@@ -48,7 +46,7 @@ class collectionRouter {
       const username = req.params.username;
       console.log(username, req.params);
 
-      const result = await Collection.find(username);
+      const result = await Collection.find({ username: username });
       res.status(202).json(result);
     } catch (err) {
       console.log(err);

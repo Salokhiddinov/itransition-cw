@@ -42,7 +42,6 @@
 
 .link:hover {
   color: black;
-  font-size: 120%;
   font-weight: 600;
 }
 
@@ -55,7 +54,6 @@
 .list-item:hover {
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  padding: 0.5rem 1rem;
 }
 
 .logout {
@@ -65,22 +63,4 @@
 
 .logout-button {
   width: 150px;
-}
-
-@-webkit-keyframes dropDown {
-  from {
-    transform: translateY(-300px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes dropDown {
-  from {
-    transform: translateY(-300px);
-  }
-  to {
-    transform: translateY(0);
-  }
 }/*# sourceMappingURL=Navigation.modules.css.map */
