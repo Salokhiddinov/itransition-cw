@@ -8,9 +8,9 @@ export default function LoginPage() {
   const inputPassword = useRef();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const enteredUsername = inputUsername.current.value;
+    const email = inputUsername.current.value.toLowerCase();
     const enteredPassword = inputPassword.current.value;
-    if (enteredUsername.trim().length === 0) {
+    if (email.trim().length === 0) {
       alert("Please enter username.");
       return false;
     }
@@ -19,11 +19,11 @@ export default function LoginPage() {
       return false;
     }
     const loginData = {
-      username: enteredUsername,
+      email: email,
       password: enteredPassword,
     };
     try {
-      const res = await axios.post("/api/login", loginData);
+      const res = await axios.post("user/login", loginData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("currentUser", JSON.stringify(res.data.user));
       window.location.href = "/";

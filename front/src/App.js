@@ -8,11 +8,12 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import TheNavigation from "./components/TheNavigation";
 import CreateItemPage from "./pages/CreateItemPage";
+import Item from "./components/Item";
 
 function App() {
   return (
     <div className="App">
-      <TheNavigation />
+      <TheNavigation className="the-navigation" />
       <section className="container">
         <Routes>
           {localStorage.getItem("currentUser") ? (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/create" element={<CreateItemPage />} />
+          <Route path="/item" element={<Item />} />
 
           {/* <Route path="/user">
             <Route path="/collection">

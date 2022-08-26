@@ -1,5 +1,5 @@
 const Collection = require("../models/Collection");
-const User = require("../models/User");
+const User = require("../models/User").default;
 
 class collectionRouter {
   async create(req, res) {

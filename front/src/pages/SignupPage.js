@@ -9,14 +9,17 @@ export default function SignupPage() {
   const inputPassword = useRef();
   const inputName = useRef();
   const inputLastName = useRef();
+  const inputEmail = useRef()
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const enteredUsername = inputUsername.current.value;
+    const enteredEmail = inputEmail.current.value.toLowerCase();
+    const enteredUsername = inputUsername.current.value.toLowerCase();
     const enteredPassword = inputPassword.current.value;
     const enteredName = inputName.current.value;
     const enteredLastName = inputLastName.current.value;
+
     if (enteredUsername.trim().length === 0) {
       alert("Please enter username.");
       return false;
@@ -28,7 +31,7 @@ export default function SignupPage() {
     console.log(enteredUsername, enteredPassword, enteredName, enteredLastName);
 
     // check if user exists
-    const res = await axios.get("/api/get-users");
+    const res = await axios.get("user");
     const candidate = res.data.find(
       (name) => name.username === enteredUsername
     );
@@ -36,23 +39,23 @@ export default function SignupPage() {
     if (candidate) {
       userExists = true;
       alert("User already exists");
-      return false;
+        window.location.href("/login")
     }
     const userData = {
       username: enteredUsername,
       name: enteredName,
       lastName: enteredLastName,
       password: enteredPassword,
+      email: enteredEmail
     };
     try {
-      await axios.post("/api/registration", userData);
+      await axios.post("user/registration", userData);
       alert("User created successfully");
-
       const loginData = {
-        username: enteredUsername,
-        password: enteredPassword,
-      };
-      const loginRes = await axios.post("/api/login", loginData);
+        email: enteredEmail,
+        password: enteredPassword
+      }
+      const loginRes = await axios.post("user/login", loginData);
       localStorage.setItem("token", loginRes.data.token);
       localStorage.setItem("currentUser", JSON.stringify(loginRes.data.user));
       window.location.href = "/";
@@ -97,6 +100,16 @@ export default function SignupPage() {
             className="form-control"
             placeholder="your-email@gmail.com"
             ref={inputUsername}
+            required
+          />
+        </div>
+        <div className="formItem">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="@username"
+            ref={inputEmail}
             required
           />
         </div>

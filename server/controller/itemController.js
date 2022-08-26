@@ -1,5 +1,5 @@
 const Item = require("../models/Item");
-const User = require("../models/User");
+const User = require("../models/User").default;
 const Collection = require("../models/Collection");
 
 class ItemController {

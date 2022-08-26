@@ -1,7 +1,7 @@
 .navigation {
   width: 100%;
   background: rgb(0, 0, 0);
-  transition: 0.2s all ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .logo-text {
@@ -11,7 +11,7 @@
 
 .menu {
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .logo {
@@ -46,16 +46,16 @@
   font-weight: 600;
 }
 
-li {
+.list-item {
   transition: all 0.3s ease-in-out;
   text-align: right;
   padding: 0.7rem 0;
 }
 
-li:hover {
+.list-item:hover {
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
 }
 
 .logout {
@@ -63,7 +63,7 @@ li:hover {
   justify-content: flex-end;
 }
 
-button {
+.logout-button {
   width: 150px;
 }
 

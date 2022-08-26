@@ -1,6 +1,5 @@
 const Router = require("express");
 const router = new Router();
-const multer = require("multer");
 const authController = require("./controller/authController");
 const collectionsController = require("./controller/collectionsController");
 const itemController = require("./controller/itemController");

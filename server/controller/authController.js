@@ -44,8 +44,8 @@ class authRouter {
 
   async login(req, res) {
     try {
-      const { username, password } = req.body;
-      const user = await User.findOne({ username: username });
+      const { email, password } = req.body;
+      const user = await User.findOne({ email: email });
       if (!user) {
         return res.status(400).json({ message: "User not found" });
       }

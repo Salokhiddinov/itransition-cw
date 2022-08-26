@@ -15,29 +15,29 @@ export default function TheNavigation() {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const list = (
     <ul className="list">
-      <li>
+      <li className="list-item">
         <Link className="link" onClick={toggleMenu} to="/">
           Home
         </Link>
       </li>
-      <li>
+      <li className="list-item">
         <Link className="link" onClick={toggleMenu} to="/login">
           Login
         </Link>
       </li>
-      <li>
+      <li className="list-item">
         <Link className="link" onClick={toggleMenu} to="/signup">
           Sign up
         </Link>
       </li>
-      <li>
+      <li className="list-item">
         <Link className="link" onClick={toggleMenu} to="/profile">
           Profile
         </Link>
       </li>
       <div className="logout">
         {localStorage.getItem("currentUser") ? (
-          <button className="btn btn-danger" onClick={logOut}>
+          <button className="btn btn-danger logout-button" onClick={logOut}>
             Log Out
           </button>
         ) : null}
