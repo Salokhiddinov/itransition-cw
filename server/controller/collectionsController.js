@@ -44,13 +44,11 @@ class collectionRouter {
   async getUserCollections(req, res) {
     try {
       const username = req.params.username;
-      console.log("username is" + username);
-      
-      //   const userID = req.params.userID;
-      //   const result = await Collection.find({userID: userID});
-    //   res.status(202).json(result);
+      const result = await Collection.find({username: username});
+      console.log(username, result);
+      res.status(202).json(result);
     } catch (err) {
-      res.json({ message: err });
+      console.log(err);
     }
   }
 

@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const { DateTime } = require("luxon");
 
 const Collection = new Schema({
-//   userID: { type: String, required: true },
+  userID: { type: String, required: true },
   title: { type: String, required: true },
   username: { type: String, required: true },
   description: { type: String, default: "No description" },
