@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: antiquewhite;
+  position: relative;
 }
 
 code {
@@ -62,6 +63,38 @@ table {
 .nav-action{
     align-items: center;
 }
+a{
+    text-decoration: none;
+}
+.spinner{
+    font-size: 3rem;
+    animation: spin infinite 0.8s;
+}
+.loading{
+    margin: auto;
+}
+.modal {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+    width: 30rem;
+    z-index: 10;
+    position: fixed;
+    top: 20vh;
+    left: calc(50% - 15rem);
+  }
+  
+  .backdrop {
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
 
 @media screen and (max-width: 600px) {
   .container {
@@ -95,4 +128,8 @@ table {
   to {
     transform: translateY(0);
   }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }
