@@ -6,7 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: antiquewhite;
-  position: relative;
 }
 
 code {
@@ -37,11 +36,7 @@ h3 {
 button {
   margin: 0.5rem 0;
 }
-.the-navigation {
-  position: fixed;
-  animation: dropDown 0.3s ease-out;
-  transition: 0.5s ease-out;
-}
+
 table {
   border-radius: 10px;
 }
@@ -95,6 +90,19 @@ a{
     top: 0;
     left: 0;
   }
+  .input-inline{
+    width: 74%;
+  }
+  .d-flex{
+    align-items: center;
+  }
+  .btn-submit{
+    width: 100% ;
+  }
+  .btn-additional-fields{
+    margin-right: 7px;
+    padding: 0 20px;
+  }
 
 @media screen and (max-width: 600px) {
   .container {
@@ -103,6 +111,10 @@ a{
   .card {
     padding: 1rem;
   }
+  .btn-inline{
+    width: 40%;
+  }
+  
 }
 @media (min-width: 601px) and (max-width: 1000px) {
   .container {
@@ -111,6 +123,9 @@ a{
   .card {
     padding: 1.5em;
   }
+  .btn-inline{
+    width: 35%;
+  }
 }
 @media (min-width: 1001px) {
   .container {
@@ -118,6 +133,9 @@ a{
   }
   .card {
     padding: 2rem;
+  }
+  .btn-inline{
+    width: 25%;
   }
 }
 

@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-// eslint-disable-next-line
 import "./Navigation.modules.css";
 import Hamburger from "hamburger-react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faBars } from "@fortawesome/free-solid-svg-icons";
-// import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function TheNavigation() {
   function logOut() {

@@ -11,6 +11,8 @@ const Item = new Schema({
   price: { type: Number, default: null },
   year: { type: String, default: null },
   from: { type: String, default: "" },
+  link: { type: String, default: ""},
+  customInputs: {type: Array, default: null}
 });
 
 module.exports = model("item", Item);

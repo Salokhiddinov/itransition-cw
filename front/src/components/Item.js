@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Item() {
   const [liked, setLiked] = useState(false);
+  
 
   const toggleLike = () => {
     setLiked(!liked);
@@ -19,7 +20,9 @@ export default function Item() {
           </div>
           <div>
             <h3>Motherfucker Bruh</h3>
-            <Link className="italic username" to='/'>@username</Link>
+            <Link className="italic username" to="/">
+              @username
+            </Link>
             <ul>
               <li>
                 Here is the description of an item that no one gives a fuck of

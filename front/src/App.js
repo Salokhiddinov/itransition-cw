@@ -9,6 +9,7 @@ import ProfilePage from "./pages/ProfilePage";
 import TheNavigation from "./components/TheNavigation";
 import CreateItemPage from "./pages/CreateItemPage";
 import Item from "./components/Item";
+// import Collection from "./components/Collection";
 
 function App() {
   return (
@@ -27,20 +28,19 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/item">
             <Route path="/item" element={<Item />} />
-            <Route path="/item/create/:username" element={<CreateItemPage />} />
           </Route>
-
-
-          {/* <Route path="/user">
-            <Route path="/collection">
-              <Route path="/:id" />
-              <Route path="/create"/>
-              <Route path="/item">
-                <Route path="/:id" element={<CreateItemPage />} />
-                <Route path="/create" element={<CreateItemPage />} />
-              </Route>
+          <Route path="/user/:username">
+            {/* <Route path="/:username" path=""/> */}
+            <Route
+              path="/user/:username/:collectionID"
+              element={<CreateItemPage />}
+            >
+              <Route
+                path="/user/:username/:collectionID/create"
+                element={<CreateItemPage />}
+              />
             </Route>
-          </Route> */}
+          </Route>
         </Routes>
       </section>
     </div>
