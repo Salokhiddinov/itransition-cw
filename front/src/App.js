@@ -9,6 +9,7 @@ import ProfilePage from "./pages/ProfilePage";
 import TheNavigation from "./components/TheNavigation";
 import CreateItemPage from "./pages/CreateItemPage";
 import Item from "./components/Item";
+import UserPage from "./pages/UserPage";
 // import Collection from "./components/Collection";
 
 function App() {
@@ -29,8 +30,8 @@ function App() {
           <Route path="/item">
             <Route path="/item" element={<Item />} />
           </Route>
-          <Route path="/user/:username">
-            {/* <Route path="/:username" path=""/> */}
+          <Route path="/user/:username" element={<UserPage />}/>
+            <Route path="/user/:username">
             <Route
               path="/user/:username/:collectionID"
               element={<CreateItemPage />}

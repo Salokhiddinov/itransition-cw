@@ -72,6 +72,11 @@ class authRouter {
       console.log(err);
     }
   }
+  async getUserByUsername(req, res) {
+    const user = await User.find({ username: username });
+    res.status(202).json(user);
+  }
+
   async getUser(req, res) {
     try {
       const id = req.params.id;

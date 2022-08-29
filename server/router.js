@@ -12,6 +12,7 @@ router.post("/user/registration", authController.registration);
 router.post("/user/login", authController.login);
 router.get("/user", authController.getAllUsers);
 router.get("/user/:id", authController.getUser);
+router.get("/user/:username", authController.getUserByUsername);
 router.put("/user/:id/change-status", authController.changeStatus);
 router.delete("/user/:id/delete", authController.deleteUser);
 
@@ -25,5 +26,6 @@ router.delete("/collection/:id/delete", collectionsController.deleteCollection);
 
 //Item router
 router.post("/item/create/:username/:collectionID", itemController.createItem);
+
 
 module.exports = router;
