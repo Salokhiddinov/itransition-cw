@@ -6,6 +6,8 @@ class ItemController {
   async createItem(req, res) {
     try {
       const r = req.body;
+      console.log(r);
+
       console.log(req.params);
       const username = req.params.username;
       const collectionID = req.params.collectionID;
@@ -21,9 +23,7 @@ class ItemController {
         from: r.from,
       });
       await item.save().then(() => {
-        res
-          .status(202)
-          .json(`Item ${r.name} by ${username} is created`);
+        res.status(202).json(`Item ${r.name} by ${username} is created`);
       });
     } catch (err) {
       console.log(err);
