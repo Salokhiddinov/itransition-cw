@@ -1,21 +1,39 @@
 import BaseCard from "./UI/BaseCard";
-import image from "../assets/image.jpg";
+import axios from "../plugins/axios";
 import "./Item.modules.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Item(props) {
   const [liked, setLiked] = useState(false);
+  const currentUsername = localStorage.getItem("currentUser");
+  const noImage =
+    "https://media.istockphoto.com/vectors/no-image-available-picture-coming-soon-missing-photo-image-vector-id1379257950?b=1&k=20&m=1379257950&s=170667a&w=0&h=RyBlzT5Jt2U87CNkopCku3Use3c_3bsKS3yj6InGx1I=";
 
-  const toggleLike = () => {
-    setLiked(!liked);
+  const like = async (username, itemID) => {
+    await axios.put(`item/like`, { username, itemID }).then(() => {
+      setLiked(true);
+    });
   };
+  const unlike = async (username, itemID) => {
+    await axios.put(`item/unlike`, { username, itemID }).then(() => {
+      setLiked(false);
+    });
+  };
+
   return (
     <>
       <BaseCard>
         <div className="flexcontainer">
           <div className="image">
-            <img src={image} alt="" />
+            {props.item.image === "" ? (
+              <img src={noImage} alt="image" />
+            ) : (
+              <img
+                src={`https://firebasestorage.googleapis.com/v0/b/itransition-a1be2.appspot.com/o/images%2F${props.item.image}?alt=media`}
+                alt={props.item.image}
+              />
+            )}
           </div>
           <div>
             <h3>{props.item.name}</h3>
@@ -25,12 +43,15 @@ export default function Item(props) {
             >
               @{props.item.username}
             </Link>
-            <ul>
-              <li>{props.item.description}</li>
-              <li>Price: ${props.item.price}</li>
-              <li>Year: {props.item.year}</li>
-              <li>From: {props.item.from}</li>
-            </ul>
+            <p>Description: {props.item.description}</p>
+            {props.item.price && <p>Price: ${props.item.price}</p>}
+            {props.item.year && <p>Year: {props.item.year}</p>}
+            {props.item.from && <p>From: {props.item.from}</p>}
+            {props.item.link && (
+              <p>
+                Link: <a href={props.item.link}>{props.item.link}</a>
+              </p>
+            )}
 
             <div className="tags">
               {props.item.tags.map((tag) => {
@@ -41,32 +62,43 @@ export default function Item(props) {
                 );
               })}
             </div>
-            <div className="likes">
-              <div className="like">
-                {liked ? (
-                  <button
-                    className="btn btn-light btn-like"
-                    onClick={toggleLike}
-                  >
-                    Like 👍
-                  </button>
-                ) : null}
-                {!liked ? (
-                  <button
-                    className="btn btn-light btn-like"
-                    onClick={toggleLike}
-                  >
-                    Remove Like 🚮
-                  </button>
-                ) : null}
-              </div>
-              <div className="liked-by">
-                <span>
-                  Liked by <strong>cockboner</strong> and{" "}
-                </span>
-                <span className="underline">other 54 people</span>
-              </div>
-            </div>
+          </div>
+        </div>
+        <div className="likes">
+          <div className="like">
+            {!liked ? (
+              <button
+                className="btn btn-light btn-like"
+                onClick={() => {
+                  like(currentUsername.username, props.item._id);
+                }}
+              >
+                Like
+              </button>
+            ) : null}
+            {liked ? (
+              <button
+                className="btn btn-light btn-like"
+                onClick={() => {
+                  unlike(currentUsername.username, props.item._id);
+                }}
+              >
+                Unlike
+              </button>
+            ) : null}
+          </div>
+          <div className="liked-by">
+            <span>
+              Liked by{" "}
+              <strong>
+                <Link to="/">cockboner</Link>
+              </strong>{" "}
+              and{" "}
+            </span>
+            {props.item.likes.length !== 0 ? (
+              <span className="underline">other 54 people</span>
+            ) : null}{" "}
+            others
           </div>
         </div>
       </BaseCard>

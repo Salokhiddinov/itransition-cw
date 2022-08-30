@@ -3,34 +3,42 @@
   width: 100%;
   margin: auto;
 
-  .image{
+  .image {
     margin: auto;
   }
-  img{
-    border-radius: 20000px;
+  img {
+    border-radius: 30px;
+    object-fit: cover;
   }
-  
-  .likes{
-    display: flex;
-    align-items: center;
-  }
-  .btn-like{
+
+  .btn-like {
     width: 150px;
     background-color: rgb(229, 229, 229);
     margin-right: 10px;
-    
   }
-  .btn-like:hover{
+  .btn-like:hover {
     background-color: red;
     color: rgb(255, 255, 255);
-}
+  }
 
-  .username{
+  .username {
     text-decoration: none;
     color: rgb(0, 72, 226);
   }
 }
+.likes {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
+  .liked-by{
+    margin-left: 10px;
+  }
+  .underline{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .flexcontainer {
@@ -38,8 +46,8 @@
   }
   img {
     height: 200px;
+    max-width: 200px;
   }
-
 }
 
 @media (min-width: 601px) and (max-width: 1000px) {
@@ -48,8 +56,8 @@
   }
   img {
     height: 230px;
+    max-width: 230px;
   }
-
 }
 
 @media (min-width: 1001px) {
@@ -58,8 +66,10 @@
   }
   img {
     height: 250px;
+    max-width: 250px;
+    margin-right: 20px;
   }
-  .image{
+  .image {
     margin: 0 !important;
   }
 }

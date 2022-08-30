@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import TheNavigation from "./components/TheNavigation";
 import CreateItemPage from "./pages/CreateItemPage";
+import CollectionItems from "./pages/CollectionItems";
 import Item from "./components/Item";
 import UserPage from "./pages/UserPage";
 // import Collection from "./components/Collection";
@@ -27,11 +28,17 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/collection">
+            <Route
+              path="/collection/:collectionID"
+              element={<CollectionItems />}
+            />
+          </Route>
           <Route path="/item">
             <Route path="/item" element={<Item />} />
           </Route>
-          <Route path="/user/:username" element={<UserPage />}/>
-            <Route path="/user/:username">
+          <Route path="/user/:username" element={<UserPage />} />
+          <Route path="/user/:username">
             <Route
               path="/user/:username/:collectionID"
               element={<CreateItemPage />}

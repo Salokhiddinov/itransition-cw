@@ -12,7 +12,7 @@ const Item = new Schema({
   year: { type: String, default: null },
   from: { type: String, default: "" },
   link: { type: String, default: ""},
-  customInputs: {type: Array, default: null}
+  likes: {type: Array, default: null}
 });
 
 module.exports = model("item", Item);

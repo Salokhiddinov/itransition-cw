@@ -5,8 +5,7 @@ import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import axios from "../plugins/axios";
 import User from "../components/User";
 import Collection from "../components/Collection";
-import Loader from '../components/UI/Loader'
-
+import Loader from "../components/UI/Loader";
 
 export default function ProfilePage() {
   const [collections, setCollections] = useState([]);
@@ -34,16 +33,14 @@ export default function ProfilePage() {
   return (
     <>
       <div>
-      <Link to="" className="link-back" onClick={() => navigate(-1)}>
-        <FontAwesomeIcon icon={faLeftLong} /> Go Back
-      </Link>
+        <Link to="" className="link-back" onClick={() => navigate(-1)}>
+          <FontAwesomeIcon icon={faLeftLong} /> Go Back
+        </Link>
         <h2 className="page-title">Profile</h2>
         <User user={currentUser} />
       </div>
       <h2 className="page-title">Collections</h2>
-      {collections.length === 0 ? (
-        <Loader />
-      ) : null}
+      {collections.length === 0 ? <Loader /> : null}
       {collections.map((col) => (
         <Collection collection={col} key={col._id} />
       ))}

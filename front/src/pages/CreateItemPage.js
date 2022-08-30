@@ -8,6 +8,7 @@ import { v4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import axios from "../plugins/axios";
 
@@ -15,7 +16,7 @@ export default function CreateItemPage() {
   const navigate = useNavigate();
   const [imageUpload, setImageUpload] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(false);
-  //   const [imageTitle, setImageTitle] = useState("");
+  const [imageTitle, setImageTitle] = useState("");
   const [price, setPrice] = useState(false);
   const [year, setYear] = useState(false);
   const [from, setFrom] = useState(false);
@@ -26,10 +27,14 @@ export default function CreateItemPage() {
 
   const nameRef = useRef("");
   const descriptionRef = useRef("");
-  const priceRef = useRef("");
-  const yearRef = useRef("");
-  const fromRef = useRef("");
-  const linkRef = useRef("");
+  const [priceRef, setPriceRef] = useState("");
+  const [yearRef, setYearRef] = useState("");
+  const [fromRef, setFromRef] = useState("");
+  const [linkRef, setLinkRef] = useState("");
+  //   const priceRef = useRef("");
+  //   const yearRef = useRef("");
+  //   const fromRef = useRef("");
+  //   const linkRef = useRef("");
   const tagInput = useRef("");
 
   let { username, collectionID } = useParams();
@@ -88,24 +93,17 @@ export default function CreateItemPage() {
     e.preventDefault();
     const nameInput = nameRef.current.value;
     const descriptionInput = descriptionRef.current.value;
-    const priceInput = priceRef.current.value;
-    const yearInput = yearRef.current.value;
-    const fromInput = fromRef.current.value;
-    const linkInput = linkRef.current.value;
-
-    // if (nameInput.trim === "") {
-    //   alert("Name Field cannot be empty! Please, check your input");
-    //   return false;
-    // }
-
-    const randomImagetitle = v4();
+    const priceInput = priceRef;
+    const yearInput = yearRef;
+    const fromInput = fromRef;
+    const linkInput = linkRef;
 
     const data = {
       username: username,
       collectionID: collectionID,
       name: nameInput,
       description: descriptionInput,
-      image: randomImagetitle,
+      image: imageTitle,
       tags: tags,
       price: priceInput ? priceInput : "",
       year: yearInput ? yearInput : "",
@@ -117,10 +115,12 @@ export default function CreateItemPage() {
       //   console.log(data);
 
       await axios
-        .post(`item/create/:${username}/${collectionID}`, data)
+        .post(`item/create/${username}/${collectionID}`, data)
         .then(() => {
           //Upload Image
           const uploadImage = (e) => {
+            const randomImagetitle = v4();
+            setImageTitle(randomImagetitle);
             if (imageUpload == null) return;
             setUploadStatus(false);
             const imageRef = ref(storage, `images/${randomImagetitle}`);
@@ -139,6 +139,7 @@ export default function CreateItemPage() {
 
       return false;
     }
+    window.location.href = `/user/${username}`;
   };
   function addTag(e) {
     e.preventDefault();
@@ -255,7 +256,7 @@ export default function CreateItemPage() {
                   <input
                     className="form-control input-inline"
                     type="text"
-                    ref={priceRef}
+                    onChange={(e) => setPriceRef(e.target.value)}
                   />
                   <button
                     onClick={() => {
@@ -263,7 +264,7 @@ export default function CreateItemPage() {
                     }}
                     className="btn btn-danger btn-inline"
                   >
-                    Remove Input
+                    <FontAwesomeIcon icon={faTrashCan} />
                   </button>
                 </div>
               </div>
@@ -278,7 +279,7 @@ export default function CreateItemPage() {
                   <input
                     className="form-control input-inline"
                     type="text"
-                    ref={yearRef}
+                    onChange={(e) => setYearRef(e.target.value)}
                   />
                   <button
                     onClick={() => {
@@ -286,7 +287,7 @@ export default function CreateItemPage() {
                     }}
                     className="btn btn-danger btn-inline"
                   >
-                    Remove Input
+                    <FontAwesomeIcon icon="fa-solid fa-trash-can" />
                   </button>
                 </div>
               </div>
@@ -301,7 +302,7 @@ export default function CreateItemPage() {
                   <input
                     className="form-control input-inline"
                     type="text"
-                    ref={fromRef}
+                    onChange={(e) => setFromRef(e.target.value)}
                   />
                   <button
                     onClick={() => {
@@ -309,7 +310,7 @@ export default function CreateItemPage() {
                     }}
                     className="btn btn-danger btn-inline"
                   >
-                    Remove Input
+                    <FontAwesomeIcon icon="fa-solid fa-trash-can" />
                   </button>
                 </div>
               </div>
@@ -324,7 +325,7 @@ export default function CreateItemPage() {
                   <input
                     className="form-control input-inline"
                     type="text"
-                    ref={linkRef}
+                    onChange={(e) => setLinkRef(e.target.value)}
                   />
                   <button
                     onClick={() => {
@@ -332,7 +333,7 @@ export default function CreateItemPage() {
                     }}
                     className="btn btn-danger btn-inline"
                   >
-                    Remove Input
+                    <FontAwesomeIcon icon="fa-solid fa-trash-can" />
                   </button>
                 </div>
               </div>
