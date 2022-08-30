@@ -4,6 +4,7 @@ import axios from "../plugins/axios";
 import { useParams } from "react-router-dom";
 import Item from "../components/Item";
 
+
 export default function CollectionItems() {
   let { collectionID } = useParams();
   const [collection, setCollection] = useState([]);
@@ -25,6 +26,7 @@ export default function CollectionItems() {
     }
     getCollection();
     getItems();
+    // eslint-disable-next-line
   }, [refreshRate]);
 
   return (

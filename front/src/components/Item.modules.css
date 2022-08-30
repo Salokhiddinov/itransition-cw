@@ -37,6 +37,12 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.likes .heart-icon {
+  color: red;
+}
+.likes .heart-icon-crack {
+  color: rgb(121, 121, 121);
+}
 
 @media screen and (max-width: 600px) {
   .flexcontainer {

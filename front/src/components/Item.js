@@ -3,10 +3,14 @@ import axios from "../plugins/axios";
 import "./Item.modules.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function Item(props) {
   const [liked, setLiked] = useState(false);
   const currentUsername = localStorage.getItem("currentUser");
+  const currentUser = JSON.parse(currentUsername);
+
   const noImage =
     "https://media.istockphoto.com/vectors/no-image-available-picture-coming-soon-missing-photo-image-vector-id1379257950?b=1&k=20&m=1379257950&s=170667a&w=0&h=RyBlzT5Jt2U87CNkopCku3Use3c_3bsKS3yj6InGx1I=";
 
@@ -27,7 +31,7 @@ export default function Item(props) {
         <div className="flexcontainer">
           <div className="image">
             {props.item.image === "" ? (
-              <img src={noImage} alt="image" />
+              <img src={noImage} alt="" />
             ) : (
               <img
                 src={`https://firebasestorage.googleapis.com/v0/b/itransition-a1be2.appspot.com/o/images%2F${props.item.image}?alt=media`}
@@ -70,35 +74,39 @@ export default function Item(props) {
               <button
                 className="btn btn-light btn-like"
                 onClick={() => {
-                  like(currentUsername.username, props.item._id);
+                  like(currentUser.username, props.item._id);
                 }}
               >
-                Like
+                <FontAwesomeIcon icon={faHeart} className="heart-icon-crack" />
               </button>
             ) : null}
             {liked ? (
               <button
                 className="btn btn-light btn-like"
                 onClick={() => {
-                  unlike(currentUsername.username, props.item._id);
+                  unlike(currentUser.username, props.item._id);
                 }}
               >
-                Unlike
+                <FontAwesomeIcon icon={faHeart} className="heart-icon" />
               </button>
             ) : null}
           </div>
           <div className="liked-by">
-            <span>
-              Liked by{" "}
-              <strong>
-                <Link to="/">cockboner</Link>
-              </strong>{" "}
-              and{" "}
-            </span>
             {props.item.likes.length !== 0 ? (
-              <span className="underline">other 54 people</span>
+              <div>
+                <span>
+                  Liked by{" "}
+                  <strong>
+                    <Link to="/">{props.item.likes[0]}</Link>
+                  </strong>
+                </span>
+                {props.item.likes.length > 1 ? (
+                  <span className="underline">
+                    {" "}and other {props.item.likes.length - 1} users
+                  </span>
+                ) : null}
+              </div>
             ) : null}{" "}
-            others
           </div>
         </div>
       </BaseCard>

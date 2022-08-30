@@ -31,10 +31,7 @@ export default function CreateItemPage() {
   const [yearRef, setYearRef] = useState("");
   const [fromRef, setFromRef] = useState("");
   const [linkRef, setLinkRef] = useState("");
-  //   const priceRef = useRef("");
-  //   const yearRef = useRef("");
-  //   const fromRef = useRef("");
-  //   const linkRef = useRef("");
+
   const tagInput = useRef("");
 
   let { username, collectionID } = useParams();
@@ -139,7 +136,7 @@ export default function CreateItemPage() {
 
       return false;
     }
-    window.location.href = `/user/${username}`;
+    window.location.href = `/collection/${collectionID}`;
   };
   function addTag(e) {
     e.preventDefault();
