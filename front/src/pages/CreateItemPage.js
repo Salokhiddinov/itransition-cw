@@ -140,7 +140,8 @@ export default function CreateItemPage() {
       return false;
     }
   };
-  function addTag() {
+  function addTag(e) {
+    e.preventDefault();
     if (tagInput.current.value === "") {
       alert("Tag Field cannot be empty! Please, check your input");
       return false;
@@ -153,6 +154,7 @@ export default function CreateItemPage() {
     tagInput.current.value = "";
     console.log(tags);
   }
+
   function removeTag(id) {
     setTags(tags.filter((tag) => tag.id !== id));
   }
@@ -218,7 +220,9 @@ export default function CreateItemPage() {
                 />
                 <button
                   className="btn btn-secondary btn-inline"
-                  onClick={addTag}
+                  onClick={(e) => {
+                    addTag(e);
+                  }}
                 >
                   Add tag
                 </button>
