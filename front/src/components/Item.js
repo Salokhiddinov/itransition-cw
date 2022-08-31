@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { v4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
+
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 // import Backdrop from "./UI/Backdrop";
@@ -51,6 +53,15 @@ export default function Item(props) {
     } else {
       alert("Comment cannot be empty");
       return false;
+    }
+  };
+  const checkIfLiked = (item) => {
+    for (let i = 0; i < props.item.likes.length; i++) {
+      if (props.item.likes[i] === currentUser.username) {
+        return true;
+      } else {
+        return false;
+      }
     }
   };
   return (
@@ -117,7 +128,7 @@ export default function Item(props) {
                   />
                 </button>
               ) : null}
-              {liked ? (
+              {liked && checkIfLiked() ? (
                 <button
                   className="btn btn-light btn-like"
                   onClick={() => {
@@ -194,18 +205,27 @@ export default function Item(props) {
             </div>
           )}
           <div className="form-item">
+            <br />
+            {props.item.comments.length !== 0 ? (
+              <p className="dt">Comments</p>
+            ) : (
+              <p className="dt">No comments yet.</p>
+            )}
             <ul className="list-group">
-              <br />
-              <p>Comments</p>
               {props.item.comments.map((comment) => {
                 return (
                   <li className="list-group-item" key={comment.commentID}>
-                    <div className="d-flex flex-column">
-                      <Link to={`/user/${comment.username}`}>
-                        {comment.username}
-                      </Link>
+                    <div className="comment">
+                      <div className="d-flex align-items-center">
+                        <FontAwesomeIcon icon={faComment} className="p-2 badge bg-primary text-wrap" />
+                        <Link to={`/user/${comment.username}`} className="p-2">
+                          @{comment.username}
+                        </Link>
+                        <span className="ms-auto p-2">
+                          {getDate(comment.date)}
+                        </span>
+                      </div>
                       <p className="p-2">{comment.comment}</p>
-                      <span>{getDate(comment.date)}</span>
                     </div>
                   </li>
                 );
