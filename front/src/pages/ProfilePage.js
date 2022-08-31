@@ -12,7 +12,7 @@ export default function ProfilePage() {
   let refreshRate = 0;
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log(currentUser.username);
+  console.log(currentUser);
 
   setInterval(function () {
     refreshRate++;
@@ -20,9 +20,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     async function fetchCollections() {
-      const res = await axios.get(
-        `collection/?username=${currentUser.username}`
-      );
+      const res = await axios.get(`collection/user/${currentUser._id}`);
       console.log(res.data);
       setCollections(res.data);
     }

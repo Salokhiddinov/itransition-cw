@@ -51,7 +51,7 @@ export default function Item(props) {
               >
                 @{props.item.username}
               </Link>
-              <p>Description: {props.item.description}</p>
+              <p>Description: {props.item.description.trim() === "" ? 'No description...' : props.item.description}</p>
               {props.item.price && <p>Price: ${props.item.price}</p>}
               {props.item.year && <p>Year: {props.item.year}</p>}
               {props.item.from && <p>From: {props.item.from}</p>}
@@ -111,7 +111,7 @@ export default function Item(props) {
               ) : null}
             </div>
             <span
-              class="btn-liked-usernames"
+              className="btn-liked-usernames"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
@@ -123,11 +123,11 @@ export default function Item(props) {
               ) : null}
             </span>
             <Modal title="Likes">
-              <ul class="list-group">
+              <ul className="list-group">
                 {props.item.likes.map((username) => {
                   return (
                     <li
-                      class="list-group-item"
+                      className="list-group-item"
                       key={v4()}
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"

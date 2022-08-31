@@ -11,6 +11,7 @@ import CreateItemPage from "./pages/CreateItemPage";
 import CollectionItems from "./pages/CollectionItems";
 import Item from "./components/Item";
 import UserPage from "./pages/UserPage";
+import CreateCollection from "./pages/CreateCollection";
 // import Collection from "./components/Collection";
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/collection">
+            <Route
+              path="/collection/create/:username"
+              element={<CreateCollection />}
+            />
             <Route
               path="/collection/:collectionID"
               element={<CollectionItems />}

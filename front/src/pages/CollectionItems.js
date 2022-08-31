@@ -4,7 +4,6 @@ import axios from "../plugins/axios";
 import { useParams } from "react-router-dom";
 import Item from "../components/Item";
 
-
 export default function CollectionItems() {
   let { collectionID } = useParams();
   const [collection, setCollection] = useState([]);
@@ -22,7 +21,8 @@ export default function CollectionItems() {
     }
     async function getItems() {
       const res = await axios.get(`items/${collectionID}`);
-      setItems(res.data);
+      const reversedItems = res.data.reverse();
+      setItems(reversedItems);
     }
     getCollection();
     getItems();
