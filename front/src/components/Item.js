@@ -5,6 +5,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { v4 } from "uuid";
+// import Backdrop from "./UI/Backdrop";
+import Modal from "./UI/Modal";
 
 export default function Item(props) {
   const [liked, setLiked] = useState(false);
@@ -28,85 +31,113 @@ export default function Item(props) {
   return (
     <>
       <BaseCard>
-        <div className="flexcontainer">
-          <div className="image">
-            {props.item.image === "" ? (
-              <img src={noImage} alt="" />
-            ) : (
-              <img
-                src={`https://firebasestorage.googleapis.com/v0/b/itransition-a1be2.appspot.com/o/images%2F${props.item.image}?alt=media`}
-                alt={props.item.image}
-              />
-            )}
-          </div>
-          <div>
-            <h3>{props.item.name}</h3>
-            <Link
-              className="italic username"
-              to={`/user/${props.item.username}`}
-            >
-              @{props.item.username}
-            </Link>
-            <p>Description: {props.item.description}</p>
-            {props.item.price && <p>Price: ${props.item.price}</p>}
-            {props.item.year && <p>Year: {props.item.year}</p>}
-            {props.item.from && <p>From: {props.item.from}</p>}
-            {props.item.link && (
-              <p>
-                Link: <a href={props.item.link}>{props.item.link}</a>
-              </p>
-            )}
+        <div className="item">
+          <div className="flexcontainer">
+            <div className="image">
+              {props.item.image === "" ? (
+                <img src={noImage} alt="" />
+              ) : (
+                <img
+                  src={`https://firebasestorage.googleapis.com/v0/b/itransition-a1be2.appspot.com/o/images%2F${props.item.image}?alt=media`}
+                  alt={props.item.image}
+                />
+              )}
+            </div>
+            <div>
+              <h3>{props.item.name}</h3>
+              <Link
+                className="italic username"
+                to={`/user/${props.item.username}`}
+              >
+                @{props.item.username}
+              </Link>
+              <p>Description: {props.item.description}</p>
+              {props.item.price && <p>Price: ${props.item.price}</p>}
+              {props.item.year && <p>Year: {props.item.year}</p>}
+              {props.item.from && <p>From: {props.item.from}</p>}
+              {props.item.link && (
+                <p>
+                  Link: <a href={props.item.link}>{props.item.link}</a>
+                </p>
+              )}
 
-            <div className="tags">
-              {props.item.tags.map((tag) => {
-                return (
-                  <span className="tag" key={tag.id}>
-                    {tag.tag}
-                  </span>
-                );
-              })}
+              <div className="tags">
+                {props.item.tags.map((tag) => {
+                  return (
+                    <span className="tag" key={tag.id}>
+                      {tag.tag}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="likes">
-          <div className="like">
-            {!liked ? (
-              <button
-                className="btn btn-light btn-like"
-                onClick={() => {
-                  like(currentUser.username, props.item._id);
-                }}
-              >
-                <FontAwesomeIcon icon={faHeart} className="heart-icon-crack" />
-              </button>
-            ) : null}
-            {liked ? (
-              <button
-                className="btn btn-light btn-like"
-                onClick={() => {
-                  unlike(currentUser.username, props.item._id);
-                }}
-              >
-                <FontAwesomeIcon icon={faHeart} className="heart-icon" />
-              </button>
-            ) : null}
-          </div>
-          <div className="liked-by">
-            {props.item.likes.length !== 0 ? (
-              <div>
-                <span>
-                  Liked by{" "}
-                  <strong>
-                    <Link to="/">{props.item.likes[0]}</Link>
-                  </strong>
-                </span>
-                {props.item.likes.length > 1 ? (
-                  <span className="underline">
-                    {" "}and other {props.item.likes.length - 1} users
+          <div className="likes">
+            <div className="like">
+              {!liked ? (
+                <button
+                  className="btn btn-light btn-like"
+                  onClick={() => {
+                    like(currentUser.username, props.item._id);
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className="heart-icon-crack"
+                  />
+                </button>
+              ) : null}
+              {liked ? (
+                <button
+                  className="btn btn-light btn-like"
+                  onClick={() => {
+                    unlike(currentUser.username, props.item._id);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faHeart} className="heart-icon" />
+                </button>
+              ) : null}
+            </div>
+            <div className="liked-by">
+              {props.item.likes.length !== 0 ? (
+                <div>
+                  <span>
+                    Liked by{" "}
+                    <strong>
+                      <Link to="/">{props.item.likes[0]}</Link>
+                    </strong>
                   </span>
-                ) : null}
-              </div>
-            ) : null}{" "}
+                </div>
+              ) : null}
+            </div>
+            <span
+              class="btn-liked-usernames"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              {props.item.likes.length > 1 ? (
+                <span className="underline">
+                  {" "}
+                  and other {props.item.likes.length - 1} users
+                </span>
+              ) : null}
+            </span>
+            <Modal title="Likes">
+              <ul class="list-group">
+                {props.item.likes.map((username) => {
+                  return (
+                    <li
+                      class="list-group-item"
+                      key={v4()}
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      <Link to={`/user/${username}`}>{username}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Modal>
           </div>
         </div>
       </BaseCard>
