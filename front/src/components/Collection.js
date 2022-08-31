@@ -7,12 +7,12 @@ export default function Collection(props) {
       <BaseCard>
         <h3>{props.collection.title}</h3>
         <Link to="/">
-          <strong>@{props.collection.username}</strong>
+          @{props.collection.username}
         </Link>
         <br />
         <p>Description: {props.collection.description}</p>
         {/* <p>Number of Items: {props.collection.items.length} items</p> */}
-        <p>Number of Items: 15 items</p>
+        <p>Number of Items: {props.numOfItems} items</p>
         <div className="action">
           <Link
             to={`/collection/${props.collection._id}`}

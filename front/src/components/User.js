@@ -35,7 +35,7 @@ export default function User(props) {
           </Link>
           <button className="btn btn-danger">Delete Account</button>
         </div>
-        <Link to="/" className="btn btn-success">
+        <Link to={`/collection/create/${props.user.username}`} className="btn btn-success">
           New Collection
         </Link>
       </BaseCard>

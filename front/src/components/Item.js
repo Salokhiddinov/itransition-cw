@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+
 import { v4 } from "uuid";
 // import Backdrop from "./UI/Backdrop";
 import Modal from "./UI/Modal";
@@ -27,7 +29,10 @@ export default function Item(props) {
       setLiked(false);
     });
   };
-
+  const getDate = (date) => {
+    const date1 = new Date(date);
+    return new Intl.DateTimeFormat().format(date1);
+  };
   return (
     <>
       <BaseCard>
@@ -51,7 +56,12 @@ export default function Item(props) {
               >
                 @{props.item.username}
               </Link>
-              <p>Description: {props.item.description.trim() === "" ? 'No description...' : props.item.description}</p>
+              <p>
+                Description:{" "}
+                {props.item.description.trim() === ""
+                  ? "No description..."
+                  : props.item.description}
+              </p>
               {props.item.price && <p>Price: ${props.item.price}</p>}
               {props.item.year && <p>Year: {props.item.year}</p>}
               {props.item.from && <p>From: {props.item.from}</p>}
@@ -102,14 +112,12 @@ export default function Item(props) {
               {props.item.likes.length !== 0 ? (
                 <div>
                   <span>
-                    Liked by{" "}
-                    <strong>
-                      <Link to="/">{props.item.likes[0]}</Link>
-                    </strong>
+                    Liked by <Link to="/">{props.item.likes[0]}</Link>
                   </span>
                 </div>
               ) : null}
             </div>
+
             <span
               className="btn-liked-usernames"
               data-bs-toggle="modal"
@@ -122,6 +130,7 @@ export default function Item(props) {
                 </span>
               ) : null}
             </span>
+
             <Modal title="Likes">
               <ul className="list-group">
                 {props.item.likes.map((username) => {
@@ -138,6 +147,37 @@ export default function Item(props) {
                 })}
               </ul>
             </Modal>
+          </div>
+          <div className="form-item">
+            <div className="d-flex justify-content-between">
+              <input
+                className="form-control input-inline"
+                type="text"
+                placeholder="Type your comment here ..."
+              />
+              <button className="btn btn-primary btn-inline">
+                <FontAwesomeIcon icon={faPaperPlane} />
+              </button>
+            </div>
+          </div>
+          <div className="form-item">
+            <ul className="list-group">
+              <br />
+              <p>Comments</p>
+              {props.item.comments.map((comment) => {
+                return (
+                  <li className="list-group-item" key={comment.commentID}>
+                    <div className="d-flex flex-column">
+                      <Link to={`/user/${comment.username}`}>
+                        {comment.username}
+                      </Link>
+                      <p className="p-2">{comment.comment}</p>
+                      <span>{getDate(comment.date)}</span>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </BaseCard>

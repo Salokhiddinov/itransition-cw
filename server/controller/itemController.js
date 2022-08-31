@@ -6,9 +6,6 @@ class ItemController {
   async createItem(req, res) {
     try {
       const r = req.body;
-      console.log(r);
-
-      console.log(req.params);
       const username = req.params.username;
       const collectionID = req.params.collectionID;
       const item = new Item({
@@ -40,7 +37,6 @@ class ItemController {
   }
   async getAllItems(req, res) {
     try {
-      console.log("get all items");
       const result = await Item.find({});
       res.status(202).json(result);
     } catch (err) {
@@ -62,7 +58,7 @@ class ItemController {
     try {
       const { username, itemID } = req.body;
       const item = await Item.findOne({ _id: itemID });
-      item.likes.pull(username);
+      item.likes.pop(username);
       await item.save();
       res.status(202).json(item);
     } catch (err) {
@@ -77,6 +73,21 @@ class ItemController {
     } catch (err) {
       console.log(err);
     }
+  }
+  async commentItem(req, res) {
+    const id = req.params.itemID;
+    const { commentID, username, comment } = req.body;
+    const item = await Item.findById(id);
+    const date = new Date();
+    const data = {
+      commentID: commentID,
+      username: username,
+      comment: comment,
+      date: date,
+    };
+    item.comments.push(data);
+    await item.save();
+    res.status(202).json(item);
   }
   async getItem(req, res) {}
   async getAllItems(req, res) {}

@@ -7,7 +7,7 @@ export default function TheNavigation() {
   function logOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("currentUser");
-    window.location.href = "/login";
+    window.location.href = "/signup";
   }
   const [navIsOpen, setNavIsOpen] = useState(false);
   const list = (
@@ -49,7 +49,7 @@ export default function TheNavigation() {
     <div className="navigation">
       <div className="d-flex justify-content-between logo nav-action">
         <div className="logo-text">
-          the<strong>COLLECTOR</strong>
+          theCOLLECTOR
         </div>
         <div>
           <Hamburger toggled={navIsOpen} toggle={setNavIsOpen} color="#ffffff"/>
