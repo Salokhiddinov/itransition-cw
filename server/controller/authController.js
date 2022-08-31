@@ -73,8 +73,17 @@ class authRouter {
     }
   }
   async getUserByUsername(req, res) {
-    const user = await User.find({ username: username });
-    res.status(202).json(user);
+    try {
+      const username = req.body.username;
+      const users = await User.find();
+      const user = users.find((user) => user.username === username);
+      if (!user) {
+        return res.status(400).json({ message: "User not found" });
+      }
+      res.status(200).json(user);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getUser(req, res) {

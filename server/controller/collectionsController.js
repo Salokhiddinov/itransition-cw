@@ -1,16 +1,15 @@
 const Collection = require("../models/Collection");
-const User = require("../models/User").default;
+const User = require("../models/User");
 
 class collectionRouter {
   async create(req, res) {
     try {
-      //   const id = req.params.userID;
-      const { userID, title, description } = req.body;
-      const username = req.params.username;
+      const { username, title, description } = req.body;
+      const user = await User.findOne({ username: username });
       const collection = new Collection({
-        userID: userID,
-        title: title,
+        user_id: user._id,
         username: username,
+        title: title,
         description: description,
       });
 
@@ -43,10 +42,12 @@ class collectionRouter {
 
   async getUserCollections(req, res) {
     try {
-      const username = req.params.username;
-      const result = await Collection.find({username: username});
-      console.log(username, result);
-      res.status(202).json(result);
+      const id = req.params.id;
+      const result = await Collection.find();
+      const userCollections = result.filter((collection) => {
+        return collection.user_id === id;
+      });
+      res.status(200).json(userCollections);
     } catch (err) {
       console.log(err);
     }

@@ -30,14 +30,14 @@ export default function User(props) {
           </tbody>
         </table>
         <div className="action ">
-          <Link to="/edit-profile" className="btn btn-primary">
+          <Link to="/edit-profile" className="btn btn-secondary">
             Edit Profile
           </Link>
           <button className="btn btn-danger">Delete Account</button>
         </div>
-        <div className="action">
-          <Link to="/">New Collection</Link>
-        </div>
+        <Link to="/" className="btn btn-success">
+          New Collection
+        </Link>
       </BaseCard>
     </>
   );

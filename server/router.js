@@ -12,15 +12,15 @@ router.post("/user/registration", authController.registration);
 router.post("/user/login", authController.login);
 router.get("/user", authController.getAllUsers);
 router.get("/user/:id", authController.getUser);
-router.get("/user/:username", authController.getUserByUsername);
+router.get("/user", authController.getUserByUsername);
 router.put("/user/:id/change-status", authController.changeStatus);
 router.delete("/user/:id/delete", authController.deleteUser);
 
 //Colleciton routes
-router.post("/collection/create/:username", collectionsController.create);
+router.post("/collection/create", collectionsController.create);
 router.get("/collection/:id", collectionsController.getCollection);
 router.get("/collection", collectionsController.getAllCollections);
-router.get("/collection/:username", collectionsController.getUserCollections);
+router.get("/collection/user/:id", collectionsController.getUserCollections);
 router.put("/collection/:id/update", collectionsController.updateCollection);
 router.delete("/collection/:id/delete", collectionsController.deleteCollection);
 
