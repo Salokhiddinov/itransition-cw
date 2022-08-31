@@ -1,18 +1,21 @@
 import BaseCard from "./UI/BaseCard";
+import Loader from "./UI/Loader";
 import axios from "../plugins/axios";
 import "./Item.modules.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { v4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-import { v4 } from "uuid";
 // import Backdrop from "./UI/Backdrop";
 import Modal from "./UI/Modal";
 
 export default function Item(props) {
   const [liked, setLiked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [commentInput, setCommentInput] = useState("");
   const currentUsername = localStorage.getItem("currentUser");
   const currentUser = JSON.parse(currentUsername);
 
@@ -32,6 +35,23 @@ export default function Item(props) {
   const getDate = (date) => {
     const date1 = new Date(date);
     return new Intl.DateTimeFormat().format(date1);
+  };
+  const sendComment = async () => {
+    setLoading(true);
+    const comment = {
+      itemID: v4(),
+      username: currentUser.username,
+      comment: commentInput,
+    };
+    if (commentInput.trim() !== "") {
+      await axios.put(`item/comment/${props.item._id}`, comment).then(() => {
+        setLoading(false);
+        setCommentInput("");
+      });
+    } else {
+      alert("Comment cannot be empty");
+      return false;
+    }
   };
   return (
     <>
@@ -148,18 +168,31 @@ export default function Item(props) {
               </ul>
             </Modal>
           </div>
-          <div className="form-item">
-            <div className="d-flex justify-content-between">
-              <input
-                className="form-control input-inline"
-                type="text"
-                placeholder="Type your comment here ..."
-              />
-              <button className="btn btn-primary btn-inline">
-                <FontAwesomeIcon icon={faPaperPlane} />
-              </button>
+
+          {loading ? (
+            <Loader />
+          ) : (
+            <div>
+              <div className="form-item">
+                <div className="d-flex justify-content-between">
+                  <input
+                    className="form-control input-inline"
+                    type="text"
+                    placeholder="Type your comment here ..."
+                    onChange={(e) => {
+                      setCommentInput(e.target.value);
+                    }}
+                  />
+                  <button
+                    className="btn btn-primary btn-inline"
+                    onClick={sendComment}
+                  >
+                    <FontAwesomeIcon icon={faPaperPlane} />
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
           <div className="form-item">
             <ul className="list-group">
               <br />
