@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
-import TheNavigation from "./components/TheNavigation";
+import Navigation from "./components/Navigation";
 import CreateItemPage from "./pages/CreateItemPage";
 import CollectionItems from "./pages/CollectionItems";
 import Item from "./components/Item";
@@ -17,7 +17,7 @@ import CreateCollection from "./pages/CreateCollection";
 function App() {
   return (
     <div className="App">
-      <TheNavigation className="the-navigation" />
+      <Navigation/>
       <section className="container">
         <Routes>
           {localStorage.getItem("currentUser") ? (
