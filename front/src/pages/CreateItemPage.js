@@ -92,7 +92,7 @@ export default function CreateItemPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setDataUploading(true)
+    setDataUploading(true);
     const nameInput = nameRef.current.value;
     const descriptionInput = descriptionRef.current.value;
     const priceInput = priceRef;
@@ -106,7 +106,7 @@ export default function CreateItemPage() {
         collectionID: collectionID,
         name: nameInput,
         description: descriptionInput,
-        image: imageTitle,
+        image: imageUpload ? imageTitle : "",
         tags: tags,
         price: priceInput ? priceInput : "",
         year: yearInput ? yearInput : "",
@@ -123,15 +123,14 @@ export default function CreateItemPage() {
             setUploadStatus(false);
             const imageRef = ref(storage, `images/${imageTitle}`);
             uploadBytes(imageRef, imageUpload).then((url) => {
-            //   alert("Image Uploaded Successfuly");
+              //   alert("Image Uploaded Successfuly");
               setUploadStatus(true);
               setImageUpload(null);
-              window.location.href = `/collection/${collectionID}`;
             });
           };
           uploadImage();
         });
-    //   alert("Data uploaded successfuly!");
+      window.location.href = `/collection/${collectionID}`;
     } catch (err) {
       alert("Something went wrong");
       console.error(err);

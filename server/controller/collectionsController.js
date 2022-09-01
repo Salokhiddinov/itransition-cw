@@ -1,5 +1,6 @@
 const Collection = require("../models/Collection");
 const User = require("../models/User");
+const Item = require("../models/Item");
 
 class collectionRouter {
   async create(req, res) {
@@ -48,6 +49,25 @@ class collectionRouter {
         return collection.user_id === id;
       });
       res.status(200).json(userCollections);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async getBiggestCollections(req, res) {
+    try {
+      const temp = [];
+      const collections = await Collection.find({});
+      for (let i = 0; i < collections.length; i++) {
+        const items = await Item.find({ collectionID: collections[i].id });
+        temp.push({
+          collectionID: collections[i]._id,
+          itemsNum: items.length,
+        });
+      }
+      const result = temp.sort(
+        (a, b) => parseFloat(b.itemsNum) - parseFloat(a.itemsNum)
+      );
+      res.status(202).json(result.slice(0, 5));
     } catch (err) {
       console.log(err);
     }

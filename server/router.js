@@ -18,6 +18,7 @@ router.delete("/user/:id/delete", authController.deleteUser);
 
 //Colleciton routes
 router.post("/collection/create", collectionsController.create);
+router.get("/feed/collection", collectionsController.getBiggestCollections);
 router.get("/collection/:id", collectionsController.getCollection);
 router.get("/collection", collectionsController.getAllCollections);
 router.get("/collection/user/:id", collectionsController.getUserCollections);
@@ -28,6 +29,7 @@ router.delete("/collection/:id/delete", collectionsController.deleteCollection);
 router.post("/item/create/:username/:collectionID", itemController.createItem);
 router.get("/items", itemController.getAllItems);
 router.get("/items/:collectionID", itemController.getItemsFromCollection);
+router.get("/recent/:page", itemController.getRecentItems);
 router.put("/item/like", itemController.likeItem);
 router.put("/item/unlike", itemController.unlikeItem);
 router.delete("/item/:id/delete", itemController.deleteItem);

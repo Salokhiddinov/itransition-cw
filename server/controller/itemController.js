@@ -1,6 +1,6 @@
 const Item = require("../models/Item");
-const User = require("../models/User").default;
-const Collection = require("../models/Collection");
+// const User = require("../models/User");
+// const Collection = require("../models/Collection");
 
 class ItemController {
   async createItem(req, res) {
@@ -38,7 +38,18 @@ class ItemController {
   async getAllItems(req, res) {
     try {
       const result = await Item.find({});
+      console.log(result);
       res.status(202).json(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async getRecentItems(req, res) {
+    try {
+      const page = req.params.page * 1;
+      const result = await Item.find({});
+      res.status(200).json(result.reverse().splice(page * 5, 5));
+    //   res.status(202).json(result);
     } catch (err) {
       console.log(err);
     }
@@ -89,9 +100,8 @@ class ItemController {
     await item.save();
     res.status(202).json(item);
   }
-  async getItem(req, res) {}
-  async getAllItems(req, res) {}
-  async getUsersItems(req, res) {}
+  //   async getItem(req, res) {}
+  //   async getUsersItems(req, res) {}
 }
 
 module.exports = new ItemController();
