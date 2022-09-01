@@ -7,6 +7,7 @@ import axios from "../plugins/axios";
 export default function HomePage() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   //   const [items, setItems] = useState([]);
+  //eslint-disable-next-line
   const [items, setItems] = useState([]);
   const [collections, setCollections] = useState([]);
   const [isSelected, setIsSelected] = useState("items");
@@ -29,13 +30,7 @@ export default function HomePage() {
     getItems();
     // eslint-disable-next-line
   }, []);
-
-  const getCollectionsLength = async (id) => {
-    const res = await axios.get(`/collection/length/${id}`);
-    console.log(res.data.length);
-
-    return res.data;
-  };
+  console.log(collections);
 
   return (
     <div>
@@ -68,24 +63,22 @@ export default function HomePage() {
         </button>
       </div>
       <div>
+        <ul>
+          {isSelected === "collections"
+            ? () => {
+                collections.map((col) => {
+                  console.log(col);
+
+                  return (
+                    <li key={col._id}>
+                      <Collection collection={col} />
+                    </li>
+                  );
+                });
+              }
+            : null}
+        </ul>
         {/* Show Collections */}
-        {isSelected === "collections" ? (
-          <div>
-            {collections.map((collection) => {
-              return (
-                <div key={collection._id}>
-                  <Collection
-                    collection={collection}
-                    numOfItems={() => {
-                      getCollectionsLength(collection._id);
-                    }}
-                  />
-                </div>
-              );
-            })}
-            {collections.length === 0 && <Loader/>}
-          </div>
-        ) : null}
         {/* Show Items  */}
         {isSelected === "items" ? (
           <div>
@@ -96,7 +89,7 @@ export default function HomePage() {
                 </div>
               );
             })}
-            {collections.length === 0 && <Loader/>}
+            {collections.length === 0 && <Loader />}
             {itemsLeft ? (
               <button className="btn btn-secondary" onClick={getItems}>
                 Load More

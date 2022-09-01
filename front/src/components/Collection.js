@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
+import axios from "../plugins/axios";
 import BaseCard from "./UI/BaseCard";
 
 export default function Collection(props) {
+  const getCollectionsLength = async (id) => {
+    const res = await axios.get(`collection/length/${id}`);
+    return res.data;
+  };
   return (
     <>
       <BaseCard>
         <h3>{props.collection.title}</h3>
-        <Link to="/">
-          @{props.collection.username}
-        </Link>
+        <Link to="/">@{props.collection.username}</Link>
         <br />
         <p>Description: {props.collection.description}</p>
         {/* <p>Number of Items: {props.collection.items.length} items</p> */}
-        <p>Number of Items: {props.numOfItems} items</p>
+        <p>
+          Number of Items: {getCollectionsLength(props.collection._id)} items
+        </p>
         <div className="action">
           <Link
             to={`/collection/${props.collection._id}`}

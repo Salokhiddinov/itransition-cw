@@ -46,6 +46,9 @@ h3 {
 button {
   margin: 0.5rem 0;
 }
+ul{
+    text-decoration: none;
+}
 
 table {
   border-radius: 10px;
@@ -138,6 +141,7 @@ a {
     text-align: center;
     cursor: pointer;
 }
+
 /* .modal {
   top: 50%;
   left: 50%;

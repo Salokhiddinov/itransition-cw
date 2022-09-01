@@ -81,7 +81,7 @@ class collectionRouter {
     try {
       const collectionID = req.params.id;
       const result = await Item.find({ collectionID: collectionID });
-      res.status(202).json({ length: result.length });
+      res.status(202).json(result.length);
     } catch (err) {
       console.log(err);
     }
