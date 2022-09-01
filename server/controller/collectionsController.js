@@ -64,10 +64,24 @@ class collectionRouter {
           itemsNum: items.length,
         });
       }
-      const result = temp.sort(
-        (a, b) => parseFloat(b.itemsNum) - parseFloat(a.itemsNum)
-      );
+      temp.sort((a, b) => parseFloat(b.itemsNum) - parseFloat(a.itemsNum));
+      const result = [];
+      for (let x = 0; x < temp.length; x++) {
+        const collection = await Collection.findById({
+          _id: temp[x].collectionID,
+        });
+        result.push(collection);
+      }
       res.status(202).json(result.slice(0, 5));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async getCollectionsLength(req, res) {
+    try {
+      const collectionID = req.params.id;
+      const result = await Item.find({ collectionID: collectionID });
+      res.status(202).json({ length: result.length });
     } catch (err) {
       console.log(err);
     }

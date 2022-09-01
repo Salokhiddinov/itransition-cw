@@ -50,6 +50,7 @@ button {
 table {
   border-radius: 10px;
 }
+
 .page-title {
   margin: 1rem 0 0 0;
   text-align: center;
@@ -125,6 +126,17 @@ a {
   top: 0;
   left: 0;
   animation: fadeIn 0.2s ease-out;
+}
+.btn-group{
+    width: 100%;
+
+}
+.btn-group span{
+    width: 100%;
+    font-size: 1.2rem;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
 }
 /* .modal {
   top: 50%;
