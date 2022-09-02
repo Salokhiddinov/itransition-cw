@@ -46,8 +46,8 @@ h3 {
 button {
   margin: 0.5rem 0;
 }
-ul{
-    text-decoration: none;
+ul {
+  text-decoration: none;
 }
 
 table {
@@ -59,6 +59,13 @@ table {
   text-align: center;
   text-decoration: underline;
   animation: fadeIn 2s ease-out;
+}
+.item-controls {
+  width: 100%;
+  /* flex-direction: column; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .action {
@@ -131,18 +138,19 @@ a {
   left: 0;
   animation: fadeIn 0.2s ease-out;
 }
-.btn-group{
-    width: 100%;
-
+.btn-group {
+  width: 100%;
 }
-.btn-group span{
-    width: 100%;
-    font-size: 1.2rem;
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
+.btn-group span {
+  width: 100%;
+  font-size: 1.2rem;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
 }
-
+.delete-control{
+    color: red;
+}
 /* .modal {
   top: 50%;
   left: 50%;

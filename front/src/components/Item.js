@@ -1,5 +1,6 @@
 import BaseCard from "./UI/BaseCard";
 import Loader from "./UI/Loader";
+import ItemControls from "./UI/ItemControls";
 import axios from "../plugins/axios";
 import "./Item.modules.css";
 import { useState } from "react";
@@ -13,10 +14,12 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 // import Backdrop from "./UI/Backdrop";
 import Modal from "./UI/Modal";
+import { useEffect } from "react";
 
 export default function Item(props) {
   const [liked, setLiked] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [likes, setLikes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [commentInput, setCommentInput] = useState("");
   const currentUsername = localStorage.getItem("currentUser");
   const currentUser = JSON.parse(currentUsername);
@@ -24,15 +27,41 @@ export default function Item(props) {
   const noImage =
     "https://media.istockphoto.com/vectors/no-image-available-picture-coming-soon-missing-photo-image-vector-id1379257950?b=1&k=20&m=1379257950&s=170667a&w=0&h=RyBlzT5Jt2U87CNkopCku3Use3c_3bsKS3yj6InGx1I=";
 
-  const like = async (username, itemID) => {
-    await axios.put(`item/like`, { username, itemID }).then(() => {
-      setLiked(true);
+  const checkIfLiked = () => {
+    likes.find((username) => {
+      if (username === currentUser.username) {
+        setLiked(true);
+      }
+      return true;
     });
   };
-  const unlike = async (username, itemID) => {
-    await axios.put(`item/unlike`, { username, itemID }).then(() => {
+
+  useEffect(() => {
+    setLikes([]);
+    likes.push(...props.item.likes);
+    console.log(likes);
+    checkIfLiked();
+    // eslint-disable-next-line
+  }, []);
+
+  const toggleLike = async (username, itemID) => {
+    setLoading(true);
+    checkIfLiked();
+    if (liked) {
+      await axios.put(`item/unlike`, { username, itemID });
+      likes.filter((like) => {
+        console.log(like);
+
+        return like !== username;
+      });
       setLiked(false);
-    });
+    }
+    if (!liked) {
+      await axios.put(`item/like`, { username, itemID });
+      likes.push(...username);
+      setLiked(true);
+    }
+    setLoading(false);
   };
   const getDate = (date) => {
     const date1 = new Date(date);
@@ -41,7 +70,7 @@ export default function Item(props) {
   const sendComment = async () => {
     setLoading(true);
     const comment = {
-      itemID: v4(),
+      commentID: v4(),
       username: currentUser.username,
       comment: commentInput,
     };
@@ -55,15 +84,7 @@ export default function Item(props) {
       return false;
     }
   };
-  const checkIfLiked = (item) => {
-    for (let i = 0; i < props.item.likes.length; i++) {
-      if (props.item.likes[i] === currentUser.username) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  };
+
   return (
     <>
       <BaseCard>
@@ -81,6 +102,7 @@ export default function Item(props) {
             </div>
             <div>
               <h3>{props.item.name}</h3>
+
               <Link
                 className="italic username"
                 to={`/user/${props.item.username}`}
@@ -112,41 +134,29 @@ export default function Item(props) {
                 })}
               </div>
             </div>
+            <ItemControls className="control" />
           </div>
           <div className="likes">
             <div className="like">
-              {!liked ? (
-                <button
-                  className="btn btn-light btn-like"
-                  onClick={() => {
-                    like(currentUser.username, props.item._id);
-                  }}
-                >
+              <button onClick={toggleLike} className="btn btn-light">
+                {liked ? (
+                  <FontAwesomeIcon icon={faHeart} className="heart-icon" />
+                ) : (
                   <FontAwesomeIcon
                     icon={faHeart}
                     className="heart-icon-crack"
                   />
-                </button>
-              ) : null}
-              {liked && checkIfLiked() ? (
-                <button
-                  className="btn btn-light btn-like"
-                  onClick={() => {
-                    unlike(currentUser.username, props.item._id);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faHeart} className="heart-icon" />
-                </button>
-              ) : null}
+                )}
+              </button>
             </div>
             <div className="liked-by">
-              {props.item.likes.length !== 0 ? (
+              {props.item.likes.length !== 0 && (
                 <div>
                   <span>
-                    Liked by <Link to="/">{props.item.likes[0]}</Link>
+                    Liked by <Link to="/">{likes[0]}</Link>
                   </span>
                 </div>
-              ) : null}
+              )}
             </div>
 
             <span
@@ -154,23 +164,23 @@ export default function Item(props) {
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              {props.item.likes.length > 1 ? (
+              {likes.length > 1 && (
                 <span className="underline">
                   {" "}
-                  and other {props.item.likes.length - 1} users
+                  and other {likes.length - 1} users
                 </span>
-              ) : null}
+              )}
             </span>
 
             <Modal title="Likes">
               <ul className="list-group">
-                {props.item.likes.map((username) => {
+                {likes.map((username, idx) => {
                   return (
                     <li
                       className="list-group-item"
-                      key={v4()}
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
+                      key={idx}
                     >
                       <Link to={`/user/${username}`}>{username}</Link>
                     </li>
@@ -180,7 +190,7 @@ export default function Item(props) {
             </Modal>
           </div>
 
-          {loading ? (
+          {!loading ? (
             <Loader />
           ) : (
             <div>
@@ -217,7 +227,10 @@ export default function Item(props) {
                   <li className="list-group-item" key={comment.commentID}>
                     <div className="comment">
                       <div className="d-flex align-items-center">
-                        <FontAwesomeIcon icon={faComment} className="p-2 badge bg-primary text-wrap" />
+                        <FontAwesomeIcon
+                          icon={faComment}
+                          className="p-2 badge bg-primary text-wrap"
+                        />
                         <Link to={`/user/${comment.username}`} className="p-2">
                           @{comment.username}
                         </Link>

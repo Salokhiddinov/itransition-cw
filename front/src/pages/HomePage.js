@@ -30,7 +30,6 @@ export default function HomePage() {
     getItems();
     // eslint-disable-next-line
   }, []);
-  console.log(collections);
 
   return (
     <div>
@@ -63,22 +62,13 @@ export default function HomePage() {
         </button>
       </div>
       <div>
-        <ul>
-          {isSelected === "collections"
-            ? () => {
-                collections.map((col) => {
-                  console.log(col);
-
-                  return (
-                    <li key={col._id}>
-                      <Collection collection={col} />
-                    </li>
-                  );
-                });
-              }
-            : null}
-        </ul>
         {/* Show Collections */}
+        {isSelected === "collections" &&
+          collections.map((collection) => {
+            console.log(collection);
+            return <Collection key={collection._id} collection={collection} />;
+          })}
+
         {/* Show Items  */}
         {isSelected === "items" ? (
           <div>

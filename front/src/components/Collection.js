@@ -1,37 +1,32 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import axios from "../plugins/axios";
 import BaseCard from "./UI/BaseCard";
+import CollectionControls from "./UI/CollectionControls";
 
 export default function Collection(props) {
-  const getCollectionsLength = async (id) => {
-    const res = await axios.get(`collection/length/${id}`);
-    return res.data;
+  const [length, setLength] = useState(0);
+  const getCollectionsLength = async () => {
+    const res = await axios.get(`collection/length/${props.collection._id}`);
+    setLength(res.data);
   };
+  getCollectionsLength();
   return (
     <>
       <BaseCard>
-        <h3>{props.collection.title}</h3>
+        <div className="d-flex justify-content-between">
+          <h3>{props.collection.title}</h3>
+          <CollectionControls collection={props.collection} />
+        </div>
         <Link to="/">@{props.collection.username}</Link>
         <br />
         <p>Description: {props.collection.description}</p>
-        {/* <p>Number of Items: {props.collection.items.length} items</p> */}
-        <p>
-          Number of Items: {getCollectionsLength(props.collection._id)} items
-        </p>
-        <div className="action">
-          <Link
-            to={`/collection/${props.collection._id}`}
-            className="btn btn-secondary"
-          >
-            Items List
-          </Link>
-          <button className="btn btn-danger">Delete</button>
-        </div>
+        <p>Number of Items: {length} items</p>
         <Link
-          to={`/user/${props.collection.username}/${props.collection._id}/create`}
-          className="btn btn-primary"
+          to={`/collection/${props.collection._id}`}
+          className="btn btn-secondary mt-3"
         >
-          Add Item
+          Items List
         </Link>
       </BaseCard>
     </>
