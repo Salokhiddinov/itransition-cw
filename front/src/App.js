@@ -12,6 +12,7 @@ import CollectionItems from "./pages/CollectionItems";
 import Item from "./components/Item";
 import UserPage from "./pages/UserPage";
 import CreateCollection from "./pages/CreateCollection";
+import UpdateCollectionPage from "./pages/UpdateCollectionPage";
 import UpdateItemPage from "./pages/UpdateItemPage";
 // import Collection from "./components/Collection";
 
@@ -41,17 +42,21 @@ function App() {
             />
             <Route
               path="/collection/:username/:collectionID/update"
-              element={<UpdateItemPage />}
+              element={<UpdateCollectionPage />}
             />
           </Route>
           <Route path="/item">
             <Route path="/item" element={<Item />} />
+            <Route
+              path="/item/:username/:collectionID/:id/update"
+              element={<UpdateItemPage />}
+            />
           </Route>
           <Route path="/user/:username" element={<UserPage />} />
           <Route path="/user/:username">
             <Route
               path="/user/:username/:collectionID"
-              element={<CreateItemPage />}
+              element={<CollectionItems />}
             >
               <Route
                 path="/user/:username/:collectionID/create"

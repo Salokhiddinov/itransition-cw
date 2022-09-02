@@ -35,6 +35,14 @@ class ItemController {
       console.log(err);
     }
   }
+  async getItem(req,res){
+    try{
+        const item = await Item.findById(req.params.id);
+        res.status(202).json(item);
+    }catch(err){
+        console.log(err)
+    }
+  }
   async getAllItems(req, res) {
     try {
       const result = await Item.find({});

@@ -32,6 +32,7 @@ router.delete("/delete/collection/:id", collectionsController.deleteCollection);
 //Item router
 router.post("/item/create/:username/:collectionID", itemController.createItem);
 router.get("/items", itemController.getAllItems);
+router.get('/item/get/:id', itemController.getItem);
 router.get("/items/:collectionID", itemController.getItemsFromCollection);
 router.get("/recent/:page", itemController.getRecentItems);
 router.put("/item/like", itemController.likeItem);
