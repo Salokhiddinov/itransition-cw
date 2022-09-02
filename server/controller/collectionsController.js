@@ -89,7 +89,7 @@ class collectionRouter {
 
   async updateCollection(req, res) {
     try {
-      const { title, description } = req.body;
+      const { id, title, description } = req.body;
       await Collection.findOneAndUpdate(
         { _id: req.params.id },
         { title: title, description: description }

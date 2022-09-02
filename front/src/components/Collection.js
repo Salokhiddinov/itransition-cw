@@ -20,7 +20,12 @@ export default function Collection(props) {
         </div>
         <Link to="/">@{props.collection.username}</Link>
         <br />
-        <p>Description: {props.collection.description}</p>
+        <p>
+          Description:{" "}
+          {props.collection.description.trim === ""
+            ? props.collection.description
+            : "No description."}
+        </p>
         <p>Number of Items: {length} items</p>
         <Link
           to={`/collection/${props.collection._id}`}

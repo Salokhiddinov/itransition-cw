@@ -21,10 +21,13 @@ router.post("/collection/create", collectionsController.create);
 router.get("/feed/collection", collectionsController.getBiggestCollections);
 router.get("/collection/:id", collectionsController.getCollection);
 router.get("/collection", collectionsController.getAllCollections);
-router.get("/collection/length/:id", collectionsController.getCollectionsLength);
+router.get(
+  "/collection/length/:id",
+  collectionsController.getCollectionsLength
+);
 router.get("/collection/user/:id", collectionsController.getUserCollections);
-router.put("/collection/:id/update", collectionsController.updateCollection);
-router.delete("/collection/:id/delete", collectionsController.deleteCollection);
+router.put("/update/collection/:id", collectionsController.updateCollection);
+router.delete("/delete/collection/:id", collectionsController.deleteCollection);
 
 //Item router
 router.post("/item/create/:username/:collectionID", itemController.createItem);

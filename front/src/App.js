@@ -12,12 +12,13 @@ import CollectionItems from "./pages/CollectionItems";
 import Item from "./components/Item";
 import UserPage from "./pages/UserPage";
 import CreateCollection from "./pages/CreateCollection";
+import UpdateItemPage from "./pages/UpdateItemPage";
 // import Collection from "./components/Collection";
 
 function App() {
   return (
     <div className="App">
-      <Navigation/>
+      <Navigation />
       <section className="container">
         <Routes>
           {localStorage.getItem("currentUser") ? (
@@ -37,6 +38,10 @@ function App() {
             <Route
               path="/collection/:collectionID"
               element={<CollectionItems />}
+            />
+            <Route
+              path="/collection/:username/:collectionID/update"
+              element={<UpdateItemPage />}
             />
           </Route>
           <Route path="/item">
