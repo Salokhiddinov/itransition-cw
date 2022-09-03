@@ -126,11 +126,14 @@ export default function CreateItemPage() {
               //   alert("Image Uploaded Successfuly");
               setUploadStatus(true);
               setImageUpload(null);
+              window.location.href = `/user/${username}/${collectionID}`;
             });
           };
           uploadImage();
         });
-      window.location.href = `/collection/items/${collectionID}`;
+      if (imageUpload == null) {
+        window.location.href = `/user/${username}/${collectionID}`;
+      }
     } catch (err) {
       alert("Something went wrong");
       console.error(err);

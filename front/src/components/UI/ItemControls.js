@@ -16,7 +16,6 @@ export default function ItemControls(props) {
       return false;
     }
   }
-  console.log(props.item);
 
   return (
     <Dropdown>
@@ -32,7 +31,9 @@ export default function ItemControls(props) {
         <Dropdown.Item href={`/item/edit/${props.item._id}`}>
           Edit
         </Dropdown.Item>
-        <Dropdown.Item onClick={deleteItem} className="delete-control">Delete</Dropdown.Item>
+        <Dropdown.Item onClick={deleteItem} className="delete-control">
+          Delete
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

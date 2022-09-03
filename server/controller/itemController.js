@@ -131,8 +131,6 @@ class ItemController {
     await item.save();
     res.status(202).json(item);
   }
-  //   async getItem(req, res) {}
-  //   async getUsersItems(req, res) {}
 }
 
 module.exports = new ItemController();

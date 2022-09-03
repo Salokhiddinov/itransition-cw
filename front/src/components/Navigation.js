@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -10,13 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function NavScrollExample() {
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
   const theme = "light";
   console.log(theme);
   const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("currentUser");
-    navigate("/");
+    window.location.reload();
   };
 
   return (

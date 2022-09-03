@@ -15,7 +15,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 // import Backdrop from "./UI/Backdrop";
 import Modal from "./UI/Modal";
 import { useEffect } from "react";
-
+let refreshRate = 0;
 export default function Item(props) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState([]);
@@ -35,14 +35,15 @@ export default function Item(props) {
       return true;
     });
   };
-
+  setInterval(() => {
+    refreshRate++;
+  }, 2000);
   useEffect(() => {
     setLikes([]);
     likes.push(...props.item.likes);
-    console.log(likes);
     checkIfLiked();
     // eslint-disable-next-line
-  }, []);
+  }, [refreshRate]);
 
   const toggleLike = async (username, itemID) => {
     setLoading(true);
@@ -130,7 +131,10 @@ export default function Item(props) {
                 })}
               </div>
             </div>
-            <ItemControls className="control" item={props.item} />
+            {props.item.username === currentUser.username ||
+            currentUser.admin ? (
+              <ItemControls className="control" item={props.item} />
+            ) : null}
           </div>
           <div className="likes">
             <div className="like">
