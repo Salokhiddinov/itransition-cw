@@ -53,8 +53,8 @@ function App() {
             <Route path="/item" element={<Item />} />
             <Route path="/item/edit/:id" element={<UpdateItemPage />} />
           </Route>
-          <Route path="/user/:username" element={<UserPage />} />
           <Route path="/user/:username">
+            <Route path="/user/:username" element={<UserPage />} />
             <Route
               path="/user/:username/:collectionID"
               element={<CollectionItems />}

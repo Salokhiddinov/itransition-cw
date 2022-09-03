@@ -151,6 +151,18 @@ a {
 .delete-control{
     color: red;
 }
+.user-controls{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.user-controls h2{
+    margin: 0;
+}
+.span-margin{
+    margin-left: 0.5rem;
+}
 /* .modal {
   top: 50%;
   left: 50%;

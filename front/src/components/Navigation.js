@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -9,8 +10,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function NavScrollExample() {
+  const navigate = useNavigate();
   const theme = "light";
   console.log(theme);
+  const logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    navigate("/");
+  };
 
   return (
     <Navbar variant="dark" bg="dark" expand="lg">
@@ -23,8 +30,14 @@ function NavScrollExample() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0 align-items-center">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/login">Log In</Nav.Link>
-            <Nav.Link href="/signup">Sign Up</Nav.Link>
+
+            <NavDropdown title="Account" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="/login">Log In</NavDropdown.Item>
+              <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+              <NavDropdown.Item onClick={logOut} className="delete-control">
+                Log Out
+              </NavDropdown.Item>
+            </NavDropdown>
 
             <NavDropdown title="Language" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">English</NavDropdown.Item>

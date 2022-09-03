@@ -12,7 +12,6 @@ export default function ProfilePage() {
   let refreshRate = 0;
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log(currentUser);
 
   setInterval(function () {
     refreshRate++;
@@ -27,15 +26,13 @@ export default function ProfilePage() {
     fetchCollections();
     // eslint-disable-next-line
   }, [refreshRate]);
-
   return (
     <>
       <div>
         <Link to="" className="link-back" onClick={() => navigate(-1)}>
           <FontAwesomeIcon icon={faLeftLong} /> Go Back
         </Link>
-        <h2 className="page-title">Profile</h2>
-        <User user={currentUser} />
+        <User username={currentUser.username} />
       </div>
       <h2 className="page-title">Collections</h2>
       {collections.length === 0 ? <Loader /> : null}

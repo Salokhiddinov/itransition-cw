@@ -10,7 +10,7 @@ const itemController = require("./controller/itemController");
 //Auth routes
 router.post("/user/registration", authController.registration);
 router.post("/user/login", authController.login);
-router.get("/user", authController.getAllUsers);
+router.get("/users/", authController.getAllUsers);
 router.get("/user/:id", authController.getUser);
 router.get("/user", authController.getUserByUsername);
 router.put("/user/:id/change-status", authController.changeStatus);
@@ -32,7 +32,7 @@ router.delete("/delete/collection/:id", collectionsController.deleteCollection);
 //Item router
 router.post("/item/create/:username/:collectionID", itemController.createItem);
 router.get("/items", itemController.getAllItems);
-router.get('/item/get/:id', itemController.getItem);
+router.get("/item/get/:id", itemController.getItem);
 router.put("/item/update/:id", itemController.updateItem);
 router.get("/items/:collectionID", itemController.getItemsFromCollection);
 router.get("/recent/:page", itemController.getRecentItems);
