@@ -33,11 +33,12 @@ router.delete("/delete/collection/:id", collectionsController.deleteCollection);
 router.post("/item/create/:username/:collectionID", itemController.createItem);
 router.get("/items", itemController.getAllItems);
 router.get('/item/get/:id', itemController.getItem);
+router.put("/item/update/:id", itemController.updateItem);
 router.get("/items/:collectionID", itemController.getItemsFromCollection);
 router.get("/recent/:page", itemController.getRecentItems);
 router.put("/item/like", itemController.likeItem);
 router.put("/item/unlike", itemController.unlikeItem);
-router.delete("/item/:id/delete", itemController.deleteItem);
+router.delete("/item/delete/:id", itemController.deleteItem);
 router.put("/item/comment/:itemID", itemController.commentItem);
 
 module.exports = router;

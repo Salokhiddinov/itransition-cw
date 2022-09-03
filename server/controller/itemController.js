@@ -26,6 +26,26 @@ class ItemController {
       console.log(err);
     }
   }
+  async updateItem(req, res) {
+    try {
+      const item = await Item.findById(req.params.id);
+      if (!item) {
+        res.status(404).json("Item not found");
+      }
+      const r = req.body;
+      item.name = r.name;
+      item.description = r.description;
+      item.image = r.image;
+      item.tags = r.tags;
+      item.price = r.price;
+      item.year = r.year;
+      item.from = r.from;
+      await item.save();
+      res.status(204).json({ message: "Item updated" });
+    } catch (err) {
+      console.log(err);
+    }
+  }
   async getItemsFromCollection(req, res) {
     try {
       const collectionID = req.params.collectionID;
@@ -35,12 +55,12 @@ class ItemController {
       console.log(err);
     }
   }
-  async getItem(req,res){
-    try{
-        const item = await Item.findById(req.params.id);
-        res.status(202).json(item);
-    }catch(err){
-        console.log(err)
+  async getItem(req, res) {
+    try {
+      const item = await Item.findById(req.params.id);
+      res.status(202).json(item);
+    } catch (err) {
+      console.log(err);
     }
   }
   async getAllItems(req, res) {
@@ -57,7 +77,7 @@ class ItemController {
       const page = req.params.page * 1;
       const result = await Item.find({});
       res.status(200).json(result.reverse().splice(page * 5, 5));
-    //   res.status(202).json(result);
+      //   res.status(202).json(result);
     } catch (err) {
       console.log(err);
     }
@@ -87,8 +107,11 @@ class ItemController {
   async deleteItem(req, res) {
     try {
       const item = await Item.findById(req.params.id);
+      if (!item) {
+        res.status(404).json("Item not found");
+      }
       await item.remove();
-      res.status(202).json(item);
+      res.status(204).json({ message: "Item deleted" });
     } catch (err) {
       console.log(err);
     }
