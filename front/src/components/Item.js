@@ -9,14 +9,15 @@ import { v4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
-
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 // import Backdrop from "./UI/Backdrop";
 import Modal from "./UI/Modal";
 import { useEffect } from "react";
 let refreshRate = 0;
 export default function Item(props) {
+  const { t } = useTranslation();
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -107,17 +108,29 @@ export default function Item(props) {
                 @{props.item.username}
               </Link>
               <p>
-                Description:{" "}
+                {t("i-description")}:{" "}
                 {props.item.description.trim() === ""
-                  ? "No description..."
+                  ? t("i-no-description")
                   : props.item.description}
               </p>
-              {props.item.price && <p>Price: ${props.item.price}</p>}
-              {props.item.year && <p>Year: {props.item.year}</p>}
-              {props.item.from && <p>From: {props.item.from}</p>}
+              {props.item.price && (
+                <p>
+                  {t("i-price")}: ${props.item.price}
+                </p>
+              )}
+              {props.item.year && (
+                <p>
+                  {t("i-year")}: {props.item.year}
+                </p>
+              )}
+              {props.item.from && (
+                <p>
+                  {t("i-from")}: {props.item.from}
+                </p>
+              )}
               {props.item.link && (
                 <p>
-                  Link: <a href={props.item.link}>{props.item.link}</a>
+                  {t("i-link")}: <a href={props.item.link}>{props.item.link}</a>
                 </p>
               )}
 
@@ -153,7 +166,7 @@ export default function Item(props) {
               {props.item.likes.length !== 0 && (
                 <div>
                   <span>
-                    Liked by <Link to="/">{likes[0]}</Link>
+                    {t("i-liked-by")} <Link to="/">{likes[0]}</Link>
                   </span>
                 </div>
               )}
@@ -167,7 +180,7 @@ export default function Item(props) {
               {likes.length > 1 && (
                 <span className="underline">
                   {" "}
-                  and other {likes.length - 1} users
+                  {t("i-and-others")} {likes.length - 1} {t("i-users")}
                 </span>
               )}
             </span>
@@ -199,7 +212,7 @@ export default function Item(props) {
                   <input
                     className="form-control input-inline"
                     type="text"
-                    placeholder="Type your comment here ..."
+                    placeholder={t("i-type-comment")}
                     onChange={(e) => {
                       setCommentInput(e.target.value);
                     }}
@@ -217,9 +230,9 @@ export default function Item(props) {
           <div className="form-item">
             <br />
             {props.item.comments.length !== 0 ? (
-              <p className="dt">Comments</p>
+              <p className="dt">{t("i-comments")}</p>
             ) : (
-              <p className="dt">No comments yet.</p>
+              <p className="dt">{t("i-no-comments")}.</p>
             )}
             <ul className="list-group">
               {props.item.comments.map((comment) => {

@@ -5,8 +5,11 @@ import axios from "../plugins/axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function User(props) {
+  const { t } = useTranslation();
+
   const [user, setUser] = useState({});
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -17,7 +20,7 @@ export default function User(props) {
     const user = res.data.find((user) => {
       return user.username === props.username;
     });
-    
+
     setUser(user);
   }
 
@@ -41,7 +44,7 @@ export default function User(props) {
     <>
       <BaseCard>
         <div className="user-controls">
-          <h2 className="page-title">Profile</h2>
+          <h2 className="page-title">{t("user-profile")}</h2>
           {user.username === currentUser.username ||
           currentUser.role === "admin" ? (
             <UserControls
@@ -56,27 +59,27 @@ export default function User(props) {
         <table className="table table-striped">
           <tbody>
             <tr>
-              <td>Name: </td>
+              <td>{t("user-name")}: </td>
               <td>{user.name}</td>
             </tr>
             <tr>
-              <td>Last name: </td>
+              <td>{t("user-lastname")}: </td>
               <td>{user.lastName}</td>
             </tr>
             <tr>
-              <td>Username: </td>
+              <td>{t("user-username")}: </td>
               <td>@{user.username}</td>
             </tr>
             <tr>
-              <td>Email: </td>
+              <td>{t("user-email")}: </td>
               <td>{user.email}</td>
             </tr>
             <tr>
-              <td>Status: </td>
+              <td>{t("user-status")}: </td>
               <td>
                 {statusLoading && (
                   <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                    <span class="visually-hidden">{t("user-loading")}</span>
                   </div>
                 )}
                 {!statusLoading && user.role === "admin" && (
@@ -103,7 +106,7 @@ export default function User(props) {
           to={`/collection/create/${user.username}`}
           className="btn btn-success"
         >
-          New Collection
+          {t("user-newcol")}
         </Link>
       </BaseCard>
     </>

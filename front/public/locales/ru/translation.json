@@ -1,0 +1,74 @@
+{
+  "_comment": "=================HomePage.js translations=================",
+
+  "welcome": "Добро пожаловать, ",
+  "lets-see-whats-over-there": "Посмотрим что тут новенького!",
+  "items": "Предметы",
+  "collections": "Коллекции",
+  "load-more": "Загрузить еще",
+
+  "_comment1": "================CollectionControls.js translations=============",
+
+  "add-to-collection": "Добавить в коллекцию",
+  "edit-collection": "Изменить коллекцию",
+  "delete-collection": "Удалить коллекцию",
+
+  "_comment3": "================ItemControls.js translations============",
+
+  "edit-item": "Изменить предмет",
+  "delete-item": "Удалить предмет",
+
+  "_comment4": "================ItemControls.js translations============",
+  "modal-close": "Закрыть",
+
+  "_comment5": "================UserControls.js translations================",
+  "edit-user": "Изменить пользователя",
+  "make-admin": "Сделать Админом",
+  "remove-admin": "Убрать статус Админа",
+  "delete-user": "Удалить пользователя",
+
+  "_comment6": "================Collection.js translations================",
+  "col-description": "Описание",
+  "col-num-items": "Количество предметов",
+  "col-items": "",
+  "col-item-list": "Список предметов",
+
+  "_comment7": "================Item.js translations================",
+  "i-description": "Описание",
+  "i-no-description": "Нет описания",
+  "i-price": "Цена",
+  "i-year": "Год",
+  "i-from": "Изготовлен в (страна)",
+  "i-link": "Ссылка",
+  "i-liked-by": "Нравится",
+  "i-and-others": "и другим",
+  "i-users": "пользователям",
+  "i-comments": "Комментарии",
+  "i-no-comments": "Нет комментариев",
+  "i-type-comment": "Напишите комментарий тут...",
+
+  "_comment8": "================Navigation.js translations================",
+  "nav-home": "Главная",
+  "nav-account": "Аккаунт",
+  "nav-login": "Войти",
+  "nav-signup": "Создать",
+  "nav-logout": "Выйти",
+  "nav-profile": "Профиль",
+  "nav-search": "Поиск",
+
+  "_comment9": "================User.js translations================",
+  "user-profile": "Профиль",
+  "user-name": "Имя",
+  "user-lastname": "Фамилия",
+  "user-username": "Юзернейм",
+  "user-email": "Имейл",
+  "user-status": "Статус",
+  "user-loading": "Загрузка...",
+  "user-newcol": "Новая коллекция",
+
+  "_comment10": "================CollectionItems.js translations================",
+  "goback": "Назад",
+  "create-col-for": "Создать коллекцию для",
+  "col-title": "Название",
+  "col-create": "Создать"
+}

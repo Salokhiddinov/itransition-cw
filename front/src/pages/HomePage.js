@@ -3,8 +3,10 @@ import Collection from "../components/Collection";
 import Item from "../components/Item";
 import Loader from "../components/UI/Loader";
 import axios from "../plugins/axios";
+import { useTranslation } from "react-i18next";
 
 export default function HomePage() {
+  const { t } = useTranslation();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   //   const [items, setItems] = useState([]);
   //eslint-disable-next-line
@@ -34,9 +36,10 @@ export default function HomePage() {
   return (
     <div>
       <h1 className="text-center">
-        Welcome, <span className="fw-bold">{currentUser.name}</span>
+        {t("welcome")}
+        <span className="fw-bold">{currentUser.name}</span>
       </h1>
-      <p className="text-center">Let's see what's new over there!</p>
+      <p className="text-center">{t("lets-see-whats-over-there")}</p>
       <div className="btn-group m-auto">
         <button
           className={
@@ -46,7 +49,7 @@ export default function HomePage() {
             setIsSelected("items");
           }}
         >
-          Items
+          {t("items")}
         </button>
         <button
           className={
@@ -58,7 +61,7 @@ export default function HomePage() {
             setIsSelected("collections");
           }}
         >
-          Collections
+          {t("collections")}
         </button>
       </div>
       <div>
@@ -82,7 +85,7 @@ export default function HomePage() {
             {collections.length === 0 && <Loader />}
             {itemsLeft ? (
               <button className="btn btn-secondary" onClick={getItems}>
-                Load More
+                {t("load-more")}
               </button>
             ) : null}
           </div>

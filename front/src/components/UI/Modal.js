@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 export default function Modal(props) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div
@@ -28,7 +32,7 @@ export default function Modal(props) {
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Close
+                {t("modal-close")}
               </button>
             </div>
           </div>

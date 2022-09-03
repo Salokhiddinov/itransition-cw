@@ -1,21 +1,13 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "../../plugins/axios";
+import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical, faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserControls(props) {
+  const { t } = useTranslation();
+
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  //   async function deleteCollection() {
-  //     let confirmDelete = window.confirm(
-  //       `Delete collection "${props.collection.title}"?`
-  //     );
-  //     if (confirmDelete) {
-  //       axios.delete(`delete/collection/${props.collection._id}`);
-  //       window.location.reload();
-  //     } else {
-  //       return false;
-  //     }
-  //   }
   function refresh() {
     props.onReload();
   }
@@ -45,14 +37,14 @@ export default function UserControls(props) {
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item>Edit</Dropdown.Item>
+        <Dropdown.Item>{t("edit-user")}</Dropdown.Item>
         {currentUser.role === "admin" && props.user.role === "user" && (
           <Dropdown.Item
             onClick={() => {
               toggleStatus("admin");
             }}
           >
-            Make Admin <FontAwesomeIcon icon={faStar} />
+            {t("make-admin")} <FontAwesomeIcon icon={faStar} />
           </Dropdown.Item>
         )}
         {currentUser.role === "admin" && props.user.role === "admin" && (
@@ -61,12 +53,14 @@ export default function UserControls(props) {
               toggleStatus("user");
             }}
           >
-            Remove Admin Status
+            {t("remove-admin")}
             <FontAwesomeIcon icon={faStar} />
           </Dropdown.Item>
         )}
 
-        <Dropdown.Item className="delete-control">Delete</Dropdown.Item>
+        <Dropdown.Item className="delete-control">
+          {t("delete-user")}
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
