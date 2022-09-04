@@ -9,12 +9,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 import axios from "../plugins/axios";
 import Loader from "../components/UI/Loader";
 
 export default function CreateItemPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [dataUploading, setDataUploading] = useState(false);
 
@@ -44,7 +46,7 @@ export default function CreateItemPage() {
     <div>
       <br />
       <br />
-      <h3>Add more inputs</h3>
+      <h3>{t("input-addmoreinput")}</h3>
       {!price ? (
         <span
           className="btn-secondary btn btn-sm btn-additional-fields"
@@ -52,7 +54,7 @@ export default function CreateItemPage() {
             setPrice(true);
           }}
         >
-          Price
+          {t("input-price")}
         </span>
       ) : null}
       {!year ? (
@@ -62,7 +64,7 @@ export default function CreateItemPage() {
             setYear(true);
           }}
         >
-          Year
+          {t("input-year")}
         </span>
       ) : null}
       {!from ? (
@@ -72,7 +74,7 @@ export default function CreateItemPage() {
             setFrom(true);
           }}
         >
-          From
+          {t("input-from")}
         </span>
       ) : null}
       {!link ? (
@@ -82,7 +84,7 @@ export default function CreateItemPage() {
             setLink(true);
           }}
         >
-          Link
+          {t("input-link")}
         </span>
       ) : null}
       <br />
@@ -167,7 +169,7 @@ export default function CreateItemPage() {
       ) : (
         <div>
           <Link to="" className="link-back" onClick={() => navigate(-1)}>
-            <FontAwesomeIcon icon={faLeftLong} /> Go Back
+            <FontAwesomeIcon icon={faLeftLong} /> {t("input-goback")}
           </Link>
           <BaseCard>
             <form
@@ -175,18 +177,18 @@ export default function CreateItemPage() {
                 handleSubmit(e);
               }}
             >
-              <h2>Create Item</h2>
+              <h2>{t("input-create")}</h2>
               <div className="form-item">
                 <br />
                 <label className="form-label" htmlFor="name" required>
-                  Name
+                  {t("input-name")}
                 </label>
                 <input className="form-control" type="text" ref={nameRef} />
               </div>
               <div className="form-item">
                 <br />
                 <label className="form-label" htmlFor="description">
-                  Description
+                  {t("input-description")}
                 </label>
                 <textarea
                   name="description"
@@ -198,7 +200,7 @@ export default function CreateItemPage() {
               <div className="form-item">
                 <br />
                 <label className="form-label" htmlFor="image">
-                  Image
+                  {t("input-image")}
                 </label>
                 <div className="">
                   <input
@@ -213,7 +215,7 @@ export default function CreateItemPage() {
                 <div className="form-item">
                   <br />
                   <label className="form-label" htmlFor="title" required>
-                    Tags
+                    {t("input-tags")}
                   </label>
                   <div className="d-flex justify-content-between">
                     <input
@@ -229,7 +231,7 @@ export default function CreateItemPage() {
                         addTag(e);
                       }}
                     >
-                      Add tag
+                      {t("input-tags")}
                     </button>
                   </div>
                 </div>
@@ -254,7 +256,7 @@ export default function CreateItemPage() {
                   <div className="form-tem">
                     <br />
                     <label className="form-label" htmlFor="price">
-                      Price
+                      {t("input-price")}
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
@@ -277,7 +279,7 @@ export default function CreateItemPage() {
                   <div className="form-tem">
                     <br />
                     <label className="form-label" htmlFor="year">
-                      Year
+                      {t("input-year")}
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
@@ -300,7 +302,7 @@ export default function CreateItemPage() {
                   <div className="form-tem">
                     <br />
                     <label className="form-label" htmlFor="from">
-                      From (Place)
+                      {t("input-from")}
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
@@ -323,7 +325,7 @@ export default function CreateItemPage() {
                   <div className="form-tem">
                     <br />
                     <label className="form-label" htmlFor="link">
-                      Link to website
+                      {t("input-link")}
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
@@ -344,7 +346,7 @@ export default function CreateItemPage() {
                 ) : null}
               </div>
               <button className="btn btn-success btn-submit" type="submit">
-                Submit
+                {t("input-submit")}
               </button>
             </form>
           </BaseCard>

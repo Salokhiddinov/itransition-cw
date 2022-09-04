@@ -2,8 +2,10 @@ import BaseCard from "../components/UI/BaseCard";
 import axios from "../plugins/axios";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function LoginPage() {
+  const { t } = useTranslation();
   const inputEmail = useRef();
   const inputPassword = useRef();
   const handleSubmit = async (event) => {
@@ -11,11 +13,11 @@ export default function LoginPage() {
     const email = inputEmail.current.value.toLowerCase();
     const enteredPassword = inputPassword.current.value;
     if (email.trim().length === 0) {
-      alert("Please enter username.");
+      alert(t("login-username-validation"));
       return false;
     }
     if (enteredPassword.trim().length === 0 || enteredPassword.length < 4) {
-      alert("Password should not be empty or less than 4 characters.");
+      alert(t("login-password-length"));
       return false;
     }
     const loginData = {
@@ -37,13 +39,14 @@ export default function LoginPage() {
   return (
     <BaseCard>
       <form onSubmit={handleSubmit}>
-        <h2>Log In</h2>
+        <h2>{t("login-title")}</h2>
         <p>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
+          {t("login-dont-have-account")}{" "}
+          <Link to="/signup">{t("login-signup")}</Link>
         </p>
         <div className="mb-3">
           <label htmlFor="email" className="label">
-            E-mail
+            {t("login-email")}
           </label>
           <input
             className="form-control"
@@ -54,7 +57,7 @@ export default function LoginPage() {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t("login-password")}</label>
           <input
             className="form-control"
             placeholder="password123"
@@ -70,7 +73,7 @@ export default function LoginPage() {
             to="/"
             onClick={handleSubmit}
           >
-            Submit
+            {t("login-submit")}
           </button>
         </div>
       </form>

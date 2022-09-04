@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function StartPage() {
+  const { t } = useTranslation();
+
   return (
-    <div>
+    <div className="start-content">
       <header>
-        <h2>
-          the<span>COLLECTOR</span>
-        </h2>
+        <h1 className="website-title">
+          the<span className="fw-bold">COLLECTOR</span>
+        </h1>
       </header>
       <main>
-        <h1>The Collector</h1>
-        <p>Manage your collections easily.</p>
-        <Link to="/signup">Let's dive in!</Link>
+        <p>{t("start-manage")}</p>
+        <Link to="/login" className="btn btn-primary">
+          {t("start-divein")}
+        </Link>
       </main>
     </div>
   );

@@ -30,11 +30,20 @@ code {
   border-width: 2px;
   animation: fadeUp 0.8s ease-out;
 }
+.website-title {
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
 .container {
   margin: 5vh auto;
 }
 .form-button {
   margin: 1rem 0;
+}
+.start-content {
+  margin-top: 20vh;
 }
 h2 {
   font-size: 2rem;
@@ -148,21 +157,21 @@ a {
   text-align: center;
   cursor: pointer;
 }
-.delete-control{
-    color: red;
+.delete-control {
+  color: red;
 }
-.user-controls{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    
+.user-controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.user-controls h2{
-    margin: 0;
+.user-controls h2 {
+  margin: 0;
 }
-.span-margin{
-    margin-left: 0.5rem;
+.span-margin {
+  margin-left: 0.5rem;
 }
+
 /* .modal {
   top: 50%;
   left: 50%;

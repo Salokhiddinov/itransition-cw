@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import BaseCard from "../components/UI/BaseCard";
 import axios from "../plugins/axios";
+import { useTranslation } from "react-i18next";
 let userExists = false;
 
 export default function SignupPage() {
@@ -9,7 +10,8 @@ export default function SignupPage() {
   const inputPassword = useRef();
   const inputName = useRef();
   const inputLastName = useRef();
-  const inputEmail = useRef()
+  const inputEmail = useRef();
+  const { t } = useTranslation();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -21,11 +23,11 @@ export default function SignupPage() {
     const enteredLastName = inputLastName.current.value;
 
     if (enteredUsername.trim().length === 0) {
-      alert("Please enter username.");
+      alert(t("login-username-validation"));
       return false;
     }
     if (enteredPassword.trim().length === 0 || enteredPassword.length < 4) {
-      alert("Password should not be empty or less than 4 characters.");
+      alert(t("login-password-validation"));
       return false;
     }
     console.log(enteredUsername, enteredPassword, enteredName, enteredLastName);
@@ -38,30 +40,30 @@ export default function SignupPage() {
     console.log(candidate);
     if (candidate) {
       userExists = true;
-      alert("User already exists");
-        window.location.href("/login")
+      alert(t("signup-user-exists"));
+      window.location.href("/login");
     }
     const userData = {
       username: enteredUsername,
       name: enteredName,
       lastName: enteredLastName,
       password: enteredPassword,
-      email: enteredEmail
+      email: enteredEmail,
     };
     try {
       await axios.post("user/registration", userData);
-      alert("User created successfully");
+      alert(t("signup-created"));
       const loginData = {
         email: enteredEmail,
-        password: enteredPassword
-      }
+        password: enteredPassword,
+      };
       const loginRes = await axios.post("user/login", loginData);
       localStorage.setItem("token", loginRes.data.token);
       localStorage.setItem("currentUser", JSON.stringify(loginRes.data.user));
       window.location.href = "/";
     } catch (err) {
       console.log(err);
-      alert("Please check your username and password");
+      alert(t("signup-failed"));
       return false;
     }
   }
@@ -69,12 +71,13 @@ export default function SignupPage() {
   return (
     <BaseCard>
       <form onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
+        <h2>{t("signup-title")}</h2>
         <p>
-          Already have an account? <Link to="/login">Log In</Link>
+          {t("signup-have-account")}{" "}
+          <Link to="/login">{t("signup-login")}</Link>
         </p>
         <div className="formItem">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{t("signup-name")}</label>
           <input
             type="test"
             className="form-control"
@@ -84,7 +87,7 @@ export default function SignupPage() {
           />
         </div>
         <div className="formItem">
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">{t("signup-lastname")}</label>
           <input
             type="test"
             className="form-control"
@@ -94,7 +97,7 @@ export default function SignupPage() {
           />
         </div>
         <div className="formItem">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">{t("signup-username")}</label>
           <input
             type="text"
             className="form-control"
@@ -104,7 +107,7 @@ export default function SignupPage() {
           />
         </div>
         <div className="formItem">
-          <label htmlFor="email">E-mail</label>
+          <label htmlFor="email">{t("signup-email")}</label>
           <input
             type="email"
             className="form-control"
@@ -114,7 +117,7 @@ export default function SignupPage() {
           />
         </div>
         <div className="formItem">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t("signup-password")}</label>
           <input
             className="form-control"
             type="password"
@@ -124,12 +127,12 @@ export default function SignupPage() {
           />
         </div>
         <div>
-          <button className="btn btn-success">Submit</button>
+          <button className="btn btn-success">{t("signup-submit")}</button>
         </div>
       </form>
       {userExists ? (
         <div>
-          <p>User Exists! You will be redirected to login page.</p>
+          <p>{t("signup-redirect")}</p>
         </div>
       ) : null}
     </BaseCard>

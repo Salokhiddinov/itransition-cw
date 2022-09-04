@@ -6,8 +6,10 @@ import axios from "../plugins/axios";
 import User from "../components/User";
 import Collection from "../components/Collection";
 import Loader from "../components/UI/Loader";
+import { useTranslation } from "react-i18next";
 
 export default function UserPage() {
+  const { t } = useTranslation();
   const [collections, setCollections] = useState([]);
   const [user, setUser] = useState({});
 
@@ -37,12 +39,12 @@ export default function UserPage() {
     <>
       <div>
         <Link to="" className="link-back" onClick={() => navigate(-1)}>
-          <FontAwesomeIcon icon={faLeftLong} /> Go Back
+          <FontAwesomeIcon icon={faLeftLong} /> {t("goback")}{" "}
         </Link>
-        <h2 className="page-title">User Profile</h2>
+        <h2 className="page-title">{t("userpage-title")}</h2>
         <User username={username} />
       </div>
-      <h2 className="page-title">Collections</h2>
+      <h2 className="page-title">{t("collections")}</h2>
       {collections.length === 0 ? <Loader /> : null}
       {collections.map((col) => (
         <Collection
