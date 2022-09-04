@@ -18,6 +18,7 @@ export default function UserControls(props) {
       .then(() => {
         refresh();
         props.onStatusLoaderOff();
+        window.location.reload();
       });
     const user = await axios.get(
       `user/${localStorage.getItem("currentUser").username}`

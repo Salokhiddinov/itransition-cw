@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Collection from "../components/Collection";
-import Item from "../components/Item";
+import Collection from "../components/collections/Collection";
+import Item from "../components/items/Item";
 import Loader from "../components/UI/Loader";
 import axios from "../plugins/axios";
 import { useTranslation } from "react-i18next";

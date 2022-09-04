@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Collection from "../components/Collection";
+import Collection from "../components/collections/Collection";
 import axios from "../plugins/axios";
 import { useParams } from "react-router-dom";
-import Item from "../components/Item";
+import Item from "../components/items/Item";
 
 export default function CollectionItems() {
   let { collectionID } = useParams();

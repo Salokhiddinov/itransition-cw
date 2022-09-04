@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import BaseCard from "./UI/BaseCard";
-import UserControls from "./UI/UserControls";
-import axios from "../plugins/axios";
+import BaseCard from "../UI/BaseCard";
+import UserControls from "./UserControls";
+import axios from "../../plugins/axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -9,11 +9,11 @@ import { useTranslation } from "react-i18next";
 
 export default function User(props) {
   const { t } = useTranslation();
-
   const [user, setUser] = useState({});
-
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [statusLoading, setStatusLoading] = useState(false);
+
+
 
   async function getUser() {
     const res = await axios.get(`users`);

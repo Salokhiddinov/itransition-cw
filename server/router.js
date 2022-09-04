@@ -12,7 +12,7 @@ router.post("/user/registration", authController.registration);
 router.post("/user/login", authController.login);
 router.get("/users/", authController.getAllUsers);
 router.get("/user/:id", authController.getUser);
-router.get("/user", authController.getUserByUsername);
+router.post("/user", authController.getUserByUsername);
 router.put("/user/:id/change-status", authController.changeStatus);
 router.delete("/user/:id/delete", authController.deleteUser);
 

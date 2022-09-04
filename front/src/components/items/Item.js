@@ -1,7 +1,7 @@
-import BaseCard from "./UI/BaseCard";
-import Loader from "./UI/Loader";
-import ItemControls from "./UI/ItemControls";
-import axios from "../plugins/axios";
+import BaseCard from "../UI/BaseCard";
+import Loader from "../UI/Loader";
+import ItemControls from "./ItemControls";
+import axios from "../../plugins/axios";
 import "./Item.modules.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
 // import Backdrop from "./UI/Backdrop";
-import Modal from "./UI/Modal";
+import Modal from "../UI/Modal";
 import { useEffect } from "react";
 let refreshRate = 0;
 export default function Item(props) {

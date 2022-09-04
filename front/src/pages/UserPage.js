@@ -3,8 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import axios from "../plugins/axios";
-import User from "../components/User";
-import Collection from "../components/Collection";
+import User from "../components/user/User";
+import Collection from "../components/collections/Collection";
 import Loader from "../components/UI/Loader";
 import { useTranslation } from "react-i18next";
 
