@@ -143,9 +143,9 @@ export default function Item(props) {
               <div className="tags">
                 {props.item.tags.map((tag) => {
                   return (
-                    <span className="tag" key={tag.id}>
+                    <Link className="tag" key={tag.id} to={`/tag/${tag.tag}`}>
                       {tag.tag}
-                    </span>
+                    </Link>
                   );
                 })}
               </div>

@@ -10,7 +10,7 @@ const itemController = require("./controller/itemController");
 //Auth routes
 router.post("/user/registration", authController.registration);
 router.post("/user/login", authController.login);
-router.get("/users/", authController.getAllUsers);
+router.get("/users", authController.getAllUsers);
 router.put("/user/update/:id", authController.updateUser);
 router.get("/user/:id", authController.getUser);
 router.post("/user", authController.getUserByUsername);
@@ -41,5 +41,5 @@ router.put("/item/like", itemController.likeItem);
 router.put("/item/unlike", itemController.unlikeItem);
 router.delete("/item/delete/:id", itemController.deleteItem);
 router.put("/item/comment/:itemID", itemController.commentItem);
-
+router.post('/item/tag', itemController.searchTags);
 module.exports = router;

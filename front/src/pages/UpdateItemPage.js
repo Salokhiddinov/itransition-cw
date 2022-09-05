@@ -135,7 +135,7 @@ export default function UpdateItemPage(props) {
     setTag("");
     tags.push({
       id: v4(),
-      tag: tag,
+      tag: tag.toLowerCase(),
     });
     tag.current.value = "";
     console.log(tags);

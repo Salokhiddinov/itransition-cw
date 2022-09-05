@@ -33,7 +33,7 @@ export default function SignupPage() {
     console.log(enteredUsername, enteredPassword, enteredName, enteredLastName);
 
     // check if user exists
-    const res = await axios.post("user");
+    const res = await axios.get("users");
     const candidate = res.data.find(
       (name) => name.username === enteredUsername
     );

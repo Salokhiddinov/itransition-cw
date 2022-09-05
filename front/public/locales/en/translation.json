@@ -7,7 +7,7 @@
   "load-more": "Load more",
 
   "_comment1": "================CollectionControls.js translations================",
-  "add-to-collection": "Add to collection",
+  "add-to-collection": "Add Item",
   "edit-collection": "Edit collection",
   "delete-collection": "Delete collection",
 
@@ -132,5 +132,10 @@
   "uitem-update": "Update",
 
   "_comment19": "================UserPage.js translations================",
-    "userpage-title": "User Profile"
+  "userpage-title": "User Profile",
+
+  "_comment20": "================TagSearch.js translations================",
+  "tag-title": "Searching items with tag",
+  "tag-fail": "Something went wrong. Please, try again.",
+    "tag-empty": "No items found with this tag."
 }

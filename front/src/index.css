@@ -152,8 +152,9 @@ a {
   color: white;
   background-color: black;
   margin-right: 0.5rem;
-  padding: 0 0.5rem;
+  padding: 0 0.5rem 0.2rem 0.5rem;
   border-radius: 5px;
+  text-align: center;
 }
 .tag-remove-icon {
   cursor: pointer;

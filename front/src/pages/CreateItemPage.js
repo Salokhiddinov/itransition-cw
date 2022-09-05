@@ -152,7 +152,7 @@ export default function CreateItemPage() {
     setTag("");
     tags.push({
       id: v4(),
-      tag: tag,
+      tag: tag.toLowerCase(),
     });
     tagInput.current.value = "";
     console.log(tags);
@@ -183,7 +183,11 @@ export default function CreateItemPage() {
                 <label className="form-label" htmlFor="name" required>
                   {t("input-name")}
                 </label>
-                <input className="form-control input" type="text" ref={nameRef} />
+                <input
+                  className="form-control input"
+                  type="text"
+                  ref={nameRef}
+                />
               </div>
               <div className="form-item">
                 <br />

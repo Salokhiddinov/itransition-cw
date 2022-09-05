@@ -16,11 +16,11 @@ export default function HomePage() {
   const [itemPage, setItemPage] = useState(0);
   const [itemsLeft, setItemsLeft] = useState(true);
 
-  const getItems = async (page) => {
-    const res = await axios.get(`recent/${page}`);
+  const getItems = async () => {
+    const res = await axios.get(`recent/${itemPage}`);
     if (res.data.length < 5) setItemsLeft(false);
     items.push(...res.data);
-    setItemPage(page + 1);
+    setItemPage(itemPage + 1);
   };
   const getCollections = async () => {
     const res = await axios.get("feed/collection");

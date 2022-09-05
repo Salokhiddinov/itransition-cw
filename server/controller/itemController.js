@@ -131,6 +131,19 @@ class ItemController {
     await item.save();
     res.status(202).json(item);
   }
+  async searchTags(req, res) {
+    const { tag } = req.body;
+    const items = await Item.find({});
+    const result = [];
+    for (let i = 0; i < items.length; i++) {
+      for (let x = 0; x < items[i].tags.length; x++) {
+        if (items[i].tags[x].tag == tag) {
+          result.push(items[i]);
+        }
+      }
+    }
+    res.status(202).json(result);
+  }
 }
 
 module.exports = new ItemController();
