@@ -1,5 +1,5 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://itransition-cw-server.vercel.app/";
+axios.defaults.baseURL = "http://localhost:4000/";
 
 export default axios;

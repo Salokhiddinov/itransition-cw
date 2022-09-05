@@ -5,9 +5,7 @@ const cors = require("cors");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({ path: "./.env" });
-const {DateTime} = require("luxon")
-
-
+const { DateTime } = require("luxon");
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,9 +18,13 @@ app.use(bodyParser.json());
 app.use("/api", router);
 const start = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI).then(() => {
-      console.log("MongoDB connected");
-    })
+    await mongoose
+      .connect(
+        "mongodb+srv://Nomonjon:Nomon28112002@cluster0.u0clgge.mongodb.net/collections-project?retryWrites=true&w=majority"
+      )
+      .then(() => {
+        console.log("MongoDB connected");
+      });
     app.listen(PORT, () => {
       console.log(`\nServer started on port ${PORT}🚀`);
       console.log(`http://localhost:${PORT}`);
