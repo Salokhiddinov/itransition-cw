@@ -66,7 +66,6 @@ class ItemController {
   async getAllItems(req, res) {
     try {
       const result = await Item.find({});
-      console.log(result);
       res.status(202).json(result);
     } catch (err) {
       console.log(err);
@@ -144,55 +143,55 @@ class ItemController {
     }
     res.status(202).json(result);
   }
-//   async search(req, res) {
-//     const { key } = req.body;
-//     const getItems = await Item.find({});
-//     const getUsers = await User.find({});
-//     const getCollections = await Collection.find({});
-//     const result = {
-//       items: [],
-//       itemsByComment: [],
-//       users: [],
-//       collections: [],
-//     };
-//     for (let i = 0; i < getItems.length; i++) {
-//       if (
-//         getItems[i].name.contains(key) ||
-//         getItems[i].description.contains(key) ||
-//         getItems[i].username.contains(key) ||
-//         getItems[i].email.contains(key)
-//       ) {
-//         result.items.push(getItems[i]);
-//       }
-//     }
-//     for (let i = 0; i < getItems.length; i++) {
-//       for (let x = 0; x < getItems[i].comments.length; x++) {
-//         if (getItems[i].comments[x].comment == key) {
-//           result.itemsByComment.push(getItems[i]);
-//         }
-//       }
-//     }
+  //   async search(req, res) {
+  //     const { key } = req.body;
+  //     const getItems = await Item.find({});
+  //     const getUsers = await User.find({});
+  //     const getCollections = await Collection.find({});
+  //     const result = {
+  //       items: [],
+  //       itemsByComment: [],
+  //       users: [],
+  //       collections: [],
+  //     };
+  //     for (let i = 0; i < getItems.length; i++) {
+  //       if (
+  //         getItems[i].name.contains(key) ||
+  //         getItems[i].description.contains(key) ||
+  //         getItems[i].username.contains(key) ||
+  //         getItems[i].email.contains(key)
+  //       ) {
+  //         result.items.push(getItems[i]);
+  //       }
+  //     }
+  //     for (let i = 0; i < getItems.length; i++) {
+  //       for (let x = 0; x < getItems[i].comments.length; x++) {
+  //         if (getItems[i].comments[x].comment == key) {
+  //           result.itemsByComment.push(getItems[i]);
+  //         }
+  //       }
+  //     }
 
-//     for (let x = 0; x < getUsers.length; x++) {
-//       if (
-//         getUsers[x].username.contains(key) ||
-//         getUsers[x].email.contains(key)
-//       ) {
-//         result.users.push(getUsers[x]);
-//       }
-//     }
-//     for (let y = 0; y < getCollections.length; y++) {
-//       if (
-//         getCollections[y].name.contains(key) ||
-//         getCollections[y].description.contains(key) ||
-//         getCollections[y].username.contains(key) ||
-//         getCollections[y].email.contains(key)
-//       ) {
-//         result.collections.push(getCollections[y]);
-//       }
-//       res.status(202).json(result);
-//     }
-//   }
+  //     for (let x = 0; x < getUsers.length; x++) {
+  //       if (
+  //         getUsers[x].username.contains(key) ||
+  //         getUsers[x].email.contains(key)
+  //       ) {
+  //         result.users.push(getUsers[x]);
+  //       }
+  //     }
+  //     for (let y = 0; y < getCollections.length; y++) {
+  //       if (
+  //         getCollections[y].name.contains(key) ||
+  //         getCollections[y].description.contains(key) ||
+  //         getCollections[y].username.contains(key) ||
+  //         getCollections[y].email.contains(key)
+  //       ) {
+  //         result.collections.push(getCollections[y]);
+  //       }
+  //       res.status(202).json(result);
+  //     }
+  //   }
 }
 
 module.exports = new ItemController();
