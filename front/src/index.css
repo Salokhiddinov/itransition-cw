@@ -150,7 +150,7 @@ a {
 }
 .tag {
   color: white;
-  background-color: black;
+  background-color: rgb(45, 45, 45);
   margin-right: 0.5rem;
   padding: 0 0.5rem 0.2rem 0.5rem;
   border-radius: 5px;
