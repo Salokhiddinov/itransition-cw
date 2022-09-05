@@ -38,7 +38,9 @@ export default function UserControls(props) {
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item>{t("edit-user")}</Dropdown.Item>
+        {/* <Dropdown.Item href={`/user/edit/${props.user._id}`}>
+          {t("edit-user")}
+        </Dropdown.Item> */}
         {currentUser.role === "admin" && props.user.role === "user" && (
           <Dropdown.Item
             onClick={() => {

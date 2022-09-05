@@ -49,7 +49,7 @@ export default function CreateCollection() {
                 {t("col-title")}:
               </label>
               <input
-                className="form-control"
+                className="form-control input"
                 type="text"
                 required
                 onChange={(e) => {
@@ -63,7 +63,7 @@ export default function CreateCollection() {
                 {t("col-description")}:
               </label>
               <input
-                className="form-control"
+                className="form-control input"
                 type="text"
                 required
                 onChange={(e) => {

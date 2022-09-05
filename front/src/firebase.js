@@ -1,15 +1,14 @@
-import {initializeApp}  from 'firebase/app';
-import { getStorage } from 'firebase/storage';
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBmkSWi6ppGwzt3mCW5wy3x9YlEo_iwosM",
-    authDomain: "itransition-a1be2.firebaseapp.com",
-    projectId: "itransition-a1be2",
-    storageBucket: "itransition-a1be2.appspot.com",
-    messagingSenderId: "469165058221",
-    appId: "1:469165058221:web:009bb29d4a8171df17fe24",
-    measurementId: "G-HQEDMT04LV"
-  };
+  apiKey: "AIzaSyDTnZZumjZF201b0RVTMyvAcSwBgId-njc",
+  authDomain: "itransition-4defc.firebaseapp.com",
+  projectId: "itransition-4defc",
+  storageBucket: "itransition-4defc.appspot.com",
+  messagingSenderId: "833955997087",
+  appId: "1:833955997087:web:146467076ba690fae589aa",
+};
 
-  export const app = initializeApp(firebaseConfig);
-  export const storage = getStorage(app);
+export const app = initializeApp(firebaseConfig);
+export const storage = getStorage(app);

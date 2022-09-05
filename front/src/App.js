@@ -14,6 +14,7 @@ import UserPage from "./pages/UserPage";
 import CreateCollection from "./pages/CreateCollection";
 import UpdateCollectionPage from "./pages/UpdateCollectionPage";
 import UpdateItemPage from "./pages/UpdateItemPage";
+import UpdateUser from "./pages/UpdateUser";
 // import Collection from "./components/Collection";
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
               element={<CollectionItems />}
             ></Route>
           </Route>
+          <Route path="/user/edit/:id" element={<UpdateUser />} />
         </Routes>
       </section>
     </div>

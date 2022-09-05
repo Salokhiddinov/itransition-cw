@@ -1,9 +1,17 @@
+:root {
+  --main-bg: #f4f9ff;
+  --second-bg: #ffffff;
+  --main-font: #000000;
+  --main-link: #0453ff;
+}
+
 html {
   scroll-behavior: smooth;
+  transition: all 0.3s ease-out;
 }
 html::selection {
-  background-color: #f0f0f0;
-  color: #000;
+  background-color: var(--main-bg);
+  color: var(--main-font);
 }
 * {
   box-sizing: border-box;
@@ -15,7 +23,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--main-bg);
 }
 
 code {
@@ -29,21 +37,25 @@ code {
   border-radius: 20px;
   border-width: 2px;
   animation: fadeUp 0.8s ease-out;
+  background-color: var(--second-bg);
 }
 .website-title {
   font-size: 3rem;
   margin: 0;
   padding: 0;
-  color: #000;
+  color: var(--font-main);
 }
 .container {
   margin: 5vh auto;
+  background-color: var(--main-bg);
+  color: var(--main-font);
 }
 .form-button {
   margin: 1rem 0;
 }
 .start-content {
   margin-top: 20vh;
+  color: var(--main-font);
 }
 h2 {
   font-size: 2rem;
@@ -57,10 +69,23 @@ button {
 }
 ul {
   text-decoration: none;
+  background-color: var(--main-bg);
 }
-
+.input {
+  background-color: var(--main-bg);
+  color: var(--main-font);
+}
 table {
   border-radius: 10px;
+  background-color: var(--main-bg);
+  color: var(--main-font);
+}
+td {
+  color: var(--main-font);
+}
+.list-group-item {
+  background-color: var(--main-bg);
+  color: var(--main-font);
 }
 
 .page-title {
@@ -170,6 +195,9 @@ a {
 }
 .span-margin {
   margin-left: 0.5rem;
+}
+.comment {
+  line-height: 12px;
 }
 
 /* .modal {

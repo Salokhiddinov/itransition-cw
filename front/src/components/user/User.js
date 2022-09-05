@@ -13,8 +13,6 @@ export default function User(props) {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [statusLoading, setStatusLoading] = useState(false);
 
-
-
   async function getUser() {
     const res = await axios.get(`users`);
     const user = res.data.find((user) => {
@@ -78,8 +76,8 @@ export default function User(props) {
               <td>{t("user-status")}: </td>
               <td>
                 {statusLoading && (
-                  <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">{t("user-loading")}</span>
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">{t("user-loading")}</span>
                   </div>
                 )}
                 {!statusLoading && user.role === "admin" && (

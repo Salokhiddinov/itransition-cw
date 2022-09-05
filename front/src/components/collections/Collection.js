@@ -4,6 +4,7 @@ import axios from "../../plugins/axios";
 import BaseCard from "../UI/BaseCard";
 import CollectionControls from "./CollectionControls";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 export default function Collection(props) {
   const { t } = useTranslation();
@@ -13,7 +14,10 @@ export default function Collection(props) {
     const res = await axios.get(`collection/length/${props.collection._id}`);
     setLength(res.data);
   };
-  getCollectionsLength();
+  useEffect(() => {
+    getCollectionsLength();
+    // eslint-disable-next-line
+  }, []);
   return (
     <>
       <BaseCard>

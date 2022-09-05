@@ -16,20 +16,39 @@ export default function HomePage() {
   const [itemPage, setItemPage] = useState(0);
   const [itemsLeft, setItemsLeft] = useState(true);
 
-  const getItems = async () => {
-    const res = await axios.get(`recent/${itemPage}`);
+  const getItems = async (page) => {
+    const res = await axios.get(`recent/${page}`);
     if (res.data.length < 5) setItemsLeft(false);
     items.push(...res.data);
-    setItemPage(itemPage + 1);
+    setItemPage(page + 1);
   };
   const getCollections = async () => {
     const res = await axios.get("feed/collection");
     setCollections(res.data);
   };
 
+  const loadMore = () => {
+    setItemPage(itemPage + 1);
+    getItems();
+  };
+  const refreshData = () => {
+    setItemPage(itemPage - 1);
+    setItemsLeft(true);
+  };
+
+  async function likeItem(username, itemID) {
+    await axios.put(`item/like/`, { username: username, itemID: itemID });
+  }
+  async function unlikeItem(username, itemID) {
+    await axios.put(`item/unlike/`, { username: username, itemID: itemID });
+  }
+
   useEffect(() => {
     getCollections();
-    getItems();
+    getItems(itemPage);
+
+    // getCollections();
+    // getItems();
     // eslint-disable-next-line
   }, []);
 
@@ -78,13 +97,22 @@ export default function HomePage() {
             {items.map((item) => {
               return (
                 <div key={item._id}>
-                  <Item item={item} />
+                  <Item
+                    item={item}
+                    refresh={refreshData}
+                    like={() => {
+                      likeItem(currentUser.username, item._id);
+                    }}
+                    unlike={() => {
+                      unlikeItem(currentUser.username, item._id);
+                    }}
+                  />
                 </div>
               );
             })}
             {collections.length === 0 && <Loader />}
             {itemsLeft ? (
-              <button className="btn btn-secondary" onClick={getItems}>
+              <button className="btn btn-secondary" onClick={loadMore}>
                 {t("load-more")}
               </button>
             ) : null}

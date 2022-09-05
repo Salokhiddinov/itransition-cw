@@ -217,7 +217,7 @@ export default function UpdateItemPage(props) {
                   {t("input-name")}
                 </label>
                 <input
-                  className="form-control"
+                  className="form-control input"
                   type="text"
                   onChange={(e) => {
                     setName(e.target.value);
@@ -233,7 +233,7 @@ export default function UpdateItemPage(props) {
                 <textarea
                   name="description"
                   rows="3"
-                  className="form-control"
+                  className="form-control input"
                   onChange={(e) => {
                     setDescription(e.target.value);
                   }}
@@ -247,7 +247,7 @@ export default function UpdateItemPage(props) {
                 </label>
                 <div className="">
                   <input
-                    className="form-control"
+                    className="form-control input"
                     type="file"
                     onChange={(event) => {
                       if (uploadStatus) event.target.files[0] = null;
@@ -262,7 +262,7 @@ export default function UpdateItemPage(props) {
                   </label>
                   <div className="d-flex justify-content-between">
                     <input
-                      className="form-control input-inline"
+                      className="form-control input input-inline"
                       type="text"
                       value={tag}
                       onChange={(e) => setTag(e.target.value)}
@@ -304,7 +304,7 @@ export default function UpdateItemPage(props) {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => {
                           setPrice(e.target.value);
@@ -330,7 +330,7 @@ export default function UpdateItemPage(props) {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => {
                           setYear(e.target.value);
@@ -356,7 +356,7 @@ export default function UpdateItemPage(props) {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => {
                           setFrom(e.target.value);
@@ -382,7 +382,7 @@ export default function UpdateItemPage(props) {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => {
                           setLink(e.target.value);

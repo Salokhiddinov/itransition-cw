@@ -1,5 +1,5 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:4000/api/";
+axios.defaults.baseURL = "https://itransition-cw.herokuapp.com//";
 
 export default axios;

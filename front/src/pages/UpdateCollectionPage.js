@@ -58,7 +58,7 @@ export default function UpdateCollectionPage() {
                 {t("update-col-title")}:
               </label>
               <input
-                className="form-control"
+                className="form-control input"
                 type="text"
                 value={title}
                 required
@@ -73,7 +73,7 @@ export default function UpdateCollectionPage() {
                 {t("update-col-description")}:
               </label>
               <input
-                className="form-control"
+                className="form-control input"
                 type="text"
                 value={description}
                 required

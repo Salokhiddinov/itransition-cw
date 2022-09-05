@@ -127,7 +127,7 @@ class ItemController {
       comment: comment,
       date: date,
     };
-    item.comments.push(data);
+    item.comments.unshift(data);
     await item.save();
     res.status(202).json(item);
   }

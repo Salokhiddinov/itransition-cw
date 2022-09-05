@@ -183,7 +183,7 @@ export default function CreateItemPage() {
                 <label className="form-label" htmlFor="name" required>
                   {t("input-name")}
                 </label>
-                <input className="form-control" type="text" ref={nameRef} />
+                <input className="form-control input" type="text" ref={nameRef} />
               </div>
               <div className="form-item">
                 <br />
@@ -193,7 +193,7 @@ export default function CreateItemPage() {
                 <textarea
                   name="description"
                   rows="3"
-                  className="form-control"
+                  className="form-control input"
                   ref={descriptionRef}
                 ></textarea>
               </div>
@@ -204,7 +204,7 @@ export default function CreateItemPage() {
                 </label>
                 <div className="">
                   <input
-                    className="form-control"
+                    className="form-control input"
                     type="file"
                     onChange={(event) => {
                       if (uploadStatus) event.target.files[0] = null;
@@ -219,7 +219,7 @@ export default function CreateItemPage() {
                   </label>
                   <div className="d-flex justify-content-between">
                     <input
-                      className="form-control input-inline"
+                      className="form-control input input-inline"
                       type="text"
                       ref={tagInput}
                       value={tag}
@@ -260,7 +260,7 @@ export default function CreateItemPage() {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => setPriceRef(e.target.value)}
                       />
@@ -283,7 +283,7 @@ export default function CreateItemPage() {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => setYearRef(e.target.value)}
                       />
@@ -306,7 +306,7 @@ export default function CreateItemPage() {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => setFromRef(e.target.value)}
                       />
@@ -329,7 +329,7 @@ export default function CreateItemPage() {
                     </label>
                     <div className="d-flex justify-content-between">
                       <input
-                        className="form-control input-inline"
+                        className="form-control input input-inline"
                         type="text"
                         onChange={(e) => setLinkRef(e.target.value)}
                       />

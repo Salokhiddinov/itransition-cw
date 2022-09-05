@@ -100,6 +100,7 @@
   "404-no-page": "There is no page with this address.",
 
   "_comment15": "================SignupPage.js translations================",
+  "edit-user": "Edit User",
   "signup-user-exists": "A user with the given email is already registered",
   "signpu-created": "User created successfully",
   "signup-failed": "Please, check email and password",

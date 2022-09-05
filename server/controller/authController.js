@@ -63,7 +63,24 @@ class authRouter {
       res.status(400).json({ message: "Login Error" });
     }
   }
-
+  async updateUser(req, res) {
+    try {
+      const id = req.params.id;
+      const { name, lastName, email, username } = req.body;
+      const user = await User.findOne({ _id: id });
+      if (!user) {
+        return res.status(400).json({ message: "User not found" });
+      }
+      user.name = name;
+      user.lastName = lastName;
+      user.email = email;
+      user.username = username;
+      await user.save();
+      res.status(200).json({ message: "User updated" });
+    } catch (err) {
+      console.log(err);
+    }
+  }
   async getAllUsers(req, res) {
     try {
       const users = await User.find({});

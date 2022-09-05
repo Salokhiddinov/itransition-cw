@@ -71,7 +71,7 @@ function NavScrollExample() {
             <Form.Control
               type="search"
               placeholder={t("nav-search")}
-              className="me-2"
+              className="me-2 input"
               aria-label="Search"
             />
             <Button variant="outline-secondary">{t("nav-search")}</Button>

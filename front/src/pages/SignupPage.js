@@ -33,11 +33,10 @@ export default function SignupPage() {
     console.log(enteredUsername, enteredPassword, enteredName, enteredLastName);
 
     // check if user exists
-    const res = await axios.get("user");
+    const res = await axios.post("user");
     const candidate = res.data.find(
       (name) => name.username === enteredUsername
     );
-    console.log(candidate);
     if (candidate) {
       userExists = true;
       alert(t("signup-user-exists"));
@@ -80,7 +79,7 @@ export default function SignupPage() {
           <label htmlFor="name">{t("signup-name")}</label>
           <input
             type="test"
-            className="form-control"
+            className="form-control input"
             placeholder="John"
             ref={inputName}
             required
@@ -90,7 +89,7 @@ export default function SignupPage() {
           <label htmlFor="lastName">{t("signup-lastname")}</label>
           <input
             type="test"
-            className="form-control"
+            className="form-control input"
             placeholder="Jefferson"
             ref={inputLastName}
             required
@@ -100,7 +99,7 @@ export default function SignupPage() {
           <label htmlFor="username">{t("signup-username")}</label>
           <input
             type="text"
-            className="form-control"
+            className="form-control input"
             placeholder="@username"
             ref={inputUsername}
             required
@@ -110,7 +109,7 @@ export default function SignupPage() {
           <label htmlFor="email">{t("signup-email")}</label>
           <input
             type="email"
-            className="form-control"
+            className="form-control input"
             placeholder="your-email@gmail.com"
             ref={inputEmail}
             required
@@ -119,7 +118,7 @@ export default function SignupPage() {
         <div className="formItem">
           <label htmlFor="password">{t("signup-password")}</label>
           <input
-            className="form-control"
+            className="form-control input"
             type="password"
             placeholder="password123"
             ref={inputPassword}

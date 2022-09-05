@@ -49,7 +49,7 @@ export default function LoginPage() {
             {t("login-email")}
           </label>
           <input
-            className="form-control"
+            className="form-control input"
             type="text"
             placeholder="your-email@gmail.com"
             ref={inputEmail}
@@ -59,7 +59,7 @@ export default function LoginPage() {
         <div className="mb-3">
           <label htmlFor="password">{t("login-password")}</label>
           <input
-            className="form-control"
+            className="form-control input"
             placeholder="password123"
             type="password"
             required
