@@ -90,7 +90,7 @@ export default function Item(props) {
           <div className="control">
             <FontAwesomeIcon icon={faCookie} className="cookie" />
             {props.item.username === currentUser.username ||
-            currentUser.admin ? (
+            currentUser.role === "admin" ? (
               <ItemControls className="item-control" item={props.item} />
             ) : null}
           </div>
