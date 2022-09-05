@@ -41,5 +41,9 @@ router.put("/item/like", itemController.likeItem);
 router.put("/item/unlike", itemController.unlikeItem);
 router.delete("/item/delete/:id", itemController.deleteItem);
 router.put("/item/comment/:itemID", itemController.commentItem);
-router.post('/item/tag', itemController.searchTags);
+router.post("/item/tag", itemController.searchTags);
+
+//Search router
+// router.post("/search", itemController.search);
+
 module.exports = router;
